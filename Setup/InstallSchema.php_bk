@@ -1,0 +1,716 @@
+<?php
+/**
+ * Copyright © 2015 Chilliapple. All rights reserved.
+ */
+
+namespace Chilliapple\Customizeproducts\Setup;
+
+use Magento\Framework\Setup\InstallSchemaInterface;
+use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
+
+/**
+ * @codeCoverageIgnore
+ */
+class InstallSchema implements InstallSchemaInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
+    {
+	
+        $installer = $setup;
+
+        $installer->startSetup();
+
+		/**
+         * Create table 'customizeproducts_customizeprod'
+         */
+        $table = $installer->getConnection()->newTable(
+            $installer->getTable('customizeproducts_customizeprod')
+        )
+		->addColumn(
+            'id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+            'customizeproducts_customizeprod'
+        )
+		->addColumn(
+            'title',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'title'
+        )
+		->addColumn(
+            'customize_product_width',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+			null,
+            [],
+            'Customize Product Width'
+        )
+		->addColumn(
+            'customize_product_height',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            [],
+            'Customize Product Height'
+        )
+		->addColumn(
+            'status',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'status'
+        )
+		/*{{CedAddTableColumn}}}*/
+		
+		
+        ->setComment(
+            'Chilliapple Customizeproducts customizeproducts_customizeprod'
+        );
+		
+		$installer->getConnection()->createTable($table);
+		
+		
+		/**
+         * Create table 'customizeproducts_productcategory'
+         */
+        $table = $installer->getConnection()->newTable(
+            $installer->getTable('customizeproducts_productcategory')
+        )
+		->addColumn(
+            'id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+            'customizeproducts_productcategory'
+        )
+		->addColumn(
+            'title',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'title'
+        )
+		/*{{CedAddTableColumn}}}*/
+		
+		
+        ->setComment(
+            'Chilliapple Customizeproducts customizeproducts_productcategory'
+        );
+		
+		$installer->getConnection()->createTable($table);
+		
+		/**
+         * Create table 'customizeproducts_customizeprodview'
+         */
+        $table = $installer->getConnection()->newTable(
+            $installer->getTable('customizeproducts_customizeprodview')
+        )
+		->addColumn(
+            'id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+            'customizeproducts_customizeprodview'
+        )
+		->addColumn(
+            'title',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'title'
+        )
+		->addColumn(
+            'product_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'product_id'
+        )
+		->addColumn(
+            'view_image',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'view_image'
+        )
+		->addColumn(
+            'image_price',
+            \Magento\Framework\DB\Ddl\Table::TYPE_FLOAT,
+            null,
+            ['nullable' => false],
+            'image_price'
+        )
+		->addColumn(
+            'text_price',
+            \Magento\Framework\DB\Ddl\Table::TYPE_FLOAT,
+            null,
+            ['nullable' => false],
+            'text_price'
+        )
+		->addColumn(
+            'disable_image_upload',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'disable_image_upload'
+        )
+		->addColumn(
+            'disable_custom_text',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'disable_custom_text'
+        )
+		->addColumn(
+            'disable_facebook',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'disable_facebook'
+        )
+		->addColumn(
+            'disable_instagram',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'disable_instagram'
+        )
+		->addColumn(
+            'disable_designs',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'disable_designs'
+        )
+		/*{{CedAddTableColumn}}}*/
+		
+		
+        ->setComment(
+            'Chilliapple Customizeproducts customizeproducts_customizeprodview'
+        );
+		
+		$installer->getConnection()->createTable($table);
+		/*{{CedAddTable}}*/
+		
+		/**
+         * Create table 'customizeproducts_customizedesign'
+         */
+        $table = $installer->getConnection()->newTable(
+            $installer->getTable('customizeproducts_customizedesign')
+        )
+		->addColumn(
+            'id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+            'customizeproducts_customizedesign'
+        )
+		->addColumn(
+            'enable_options',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'enable_options'
+        )
+		->addColumn(
+            'x_pos',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'x_pos'
+        )
+		->addColumn(
+            'y_pos',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'y_pos'
+        )
+		->addColumn(
+            'scale',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'scale'
+        )
+		->addColumn(
+            'colors',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'colors'
+        )
+		->addColumn(
+            'price',
+            \Magento\Framework\DB\Ddl\Table::TYPE_FLOAT,
+            null,
+            ['nullable' => false],
+            'price'
+        )
+		->addColumn(
+            'auto_center',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'auto_center'
+        )
+		->addColumn(
+            'draggable',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'draggable'
+        )
+		->addColumn(
+            'rotatable',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'rotatable'
+        )
+		->addColumn(
+            'resizable',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'resizable'
+        )
+		/*{{CedAddTableColumn}}}*/
+		
+		
+        ->setComment(
+            'Chilliapple Customizeproducts customizeproducts_customizedesign'
+        );
+		
+		$installer->getConnection()->createTable($table);
+		/*{{CedAddTable}}*/
+		
+		/**
+         * Create table 'customizeproducts_settings'
+         */
+        $table = $installer->getConnection()->newTable(
+            $installer->getTable('customizeproducts_settings')
+        )
+		->addColumn(
+            'id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+            'customizeproducts_settings'
+        )
+		->addColumn(
+            'designer_width',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'designer_width'
+        )
+		->addColumn(
+            'designer_height',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'designer_height'
+        )
+		->addColumn(
+            'frame_shadow',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'frame_shadow'
+        )
+		->addColumn(
+            'box_positioning',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'box_positioning'
+        )
+		->addColumn(
+            'selection_positioning',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'selection_positioning'
+        )
+		->addColumn(
+            'margin_top',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'margin_top'
+        )
+		->addColumn(
+            'margin_right',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'margin_right'
+        )
+		->addColumn(
+            'margin_bottom',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'margin_bottom'
+        )
+		->addColumn(
+            'margin_left',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'margin_left'
+        )
+		->addColumn(
+            'display_customizable',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'display_customizable'
+        )
+		->addColumn(
+            'primary_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'primary_color'
+        )
+		->addColumn(
+            'secondary_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'secondary_color'
+        )
+		->addColumn(
+            'text_primary_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'text_primary_color'
+        )
+		->addColumn(
+            'text_secondary_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'text_secondary_color'
+        )
+		->addColumn(
+            'element_selected_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'element_selected_color'
+        )
+		->addColumn(
+            'bounding_box_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'bounding_box_color'
+        )
+		->addColumn(
+            'out_bounding_box_color',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'out_bounding_box_color'
+        )
+		->addColumn(
+            'image_upload',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'image_upload'
+        )
+		->addColumn(
+            'facebook_upload',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'facebook_upload'
+        )
+		->addColumn(
+            'instagram_upload',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'instagram_upload'
+        )
+		->addColumn(
+            'custom_test',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'custom_test'
+        )
+		->addColumn(
+            'download_image',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'download_image'
+        )
+		->addColumn(
+            'save_as_pdf',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'save_as_pdf'
+        )
+		->addColumn(
+            'print',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'print'
+        )
+		->addColumn(
+            'allow_product_saving',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'allow_product_saving'
+        )
+		->addColumn(
+            'tooltips',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'tooltips'
+        )
+		->addColumn(
+            'max_image_size',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'max_image_size'
+        )
+		->addColumn(
+            'min_allowed_dpi',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'min_allowed_dpi'
+        )
+		->addColumn(
+            'facebook_app_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'facebook_app_id'
+        )
+		->addColumn(
+            'instagram_client_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'instagram_client_id'
+        )
+		->addColumn(
+            'google_api_key',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'google_api_key'
+        )
+		->addColumn(
+            'zoom_factor',
+            \Magento\Framework\DB\Ddl\Table::TYPE_FLOAT,
+            null,
+            ['nullable' => false],
+            'zoom_factor'
+        )
+		->addColumn(
+            'max_zoom',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'max_zoom'
+        )
+		->addColumn(
+            'padding_control',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'padding_control'
+        )
+		->addColumn(
+            'replace_initial_element',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'replace_initial_element'
+        )
+		->addColumn(
+            'open_in_lightbox',
+            \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+            null,
+            ['nullable' => false],
+            'open_in_lightbox'
+        )
+		->addColumn(
+            'x_position',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false],
+            'x_position'
+        )
+		->addColumn(
+            'common_fonts',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            '64k',
+            [],
+            'common_fonts'
+        )
+		/*{{CedAddTableColumn}}}*/
+		
+		
+        ->setComment(
+            'Chilliapple Customizeproducts customizeproducts_settings'
+        );
+		
+		$installer->getConnection()->createTable($table);
+		
+		$quoteAddressTable = 'quote_address';
+        $quoteTable = 'quote';
+        $orderTable = 'sales_order';
+        $invoiceTable = 'sales_invoice';
+        $creditmemoTable = 'sales_creditmemo';
+        //Setup two columns for quote, quote_address and order
+        //Quote address tables
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($quoteAddressTable),
+                'customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Customization Fee'
+                ]
+            );
+        $setup->getConnection()
+            ->addColumn(
+              $setup->getTable($quoteAddressTable),
+                'base_customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Base Customization Fee'
+                ]
+            );
+        //Quote tables
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($quoteTable),
+                'customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Customization Fee'
+                ]
+            );
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($quoteTable),
+                'base_customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Base Customization Fee'
+                ]
+            );
+        //Order tables
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($orderTable),
+                'customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Customization Fee'
+                ]
+            );
+         $setup->getConnection()
+             ->addColumn(
+                $setup->getTable($orderTable),
+                'base_customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Base Customization Fee'
+                ]
+            );
+        //Invoice tables
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($invoiceTable),
+                'customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Customization Fee'
+                ]
+            );
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($invoiceTable),
+                'base_customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Base Customization Fee'
+                ]
+            );
+        //Credit memo tables
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($creditmemoTable),
+                'customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Customization Fee'
+                ]
+            );
+        $setup->getConnection()
+            ->addColumn(
+                $setup->getTable($creditmemoTable),
+                'base_customfee',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_DECIMAL,
+                    '10,2',
+                    'default' => 0.00,
+                    'nullable' => true,
+                    'comment' =>'Base Customization Fee'
+                ]
+            );
+
+        $installer->endSetup();
+
+    }
+}

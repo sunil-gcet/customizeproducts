@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+	<head>
+        <link src="Chilliapple_Customizeproducts::js/jscolor.js"/>
+    </head>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customsettings\Edit" name="customizeproducts_customsettings_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customsettings\Edit\Tabs" name="customizeproducts_customsettings_edit_tabs">
+				<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customsettings\Edit\Tab\Customsettings" name="customizeproducts_customsettings_edit_tab_customsettings"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">customsettings_section</argument>
+                    <argument name="block" xsi:type="string">customizeproducts_customsettings_edit_tab_customsettings</argument>
+                </action>
+				<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customsettings\Edit\Tab\Customdefault" name="customizeproducts_customsettings_edit_tab_customdefault"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">customdefault_section</argument>
+                    <argument name="block" xsi:type="string">customizeproducts_customsettings_edit_tab_customdefault</argument>
+                </action>
+				<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customsettings\Edit\Tab\Customfont" name="customizeproducts_customsettings_edit_tab_customfont"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">customfont_section</argument>
+                    <argument name="block" xsi:type="string">customizeproducts_customsettings_edit_tab_customfont</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,17 @@
+<?php /** @var $block \Chilliapple\Customizeproducts\Block\Adminhtml\Product\Edit\Tab\CustomizeData */ ?>
+
+<div class="fieldset-wrapper" id="product-custom-description-wrapper" data-block="product-custom-description">
+    <div class="fieldset-wrapper-title">
+        <strong class="title">
+            <span><?php /* @escapeNotVerified */ echo __('Customize Product') ?></span>
+        </strong>
+    </div>
+    <div class="fieldset-wrapper-content" id="product-custom-description-content" data-role="product-custom-description-content">
+        <fieldset class="fieldset">
+            <div id="product_custom_description_container" class="sortable-wrapper">
+                <div id="product_custom_description_container_top"></div>
+                <?php echo $block->getCustomizeDataBoxHtml() ?>
+            </div>
+        </fieldset>
+    </div>
+</div>

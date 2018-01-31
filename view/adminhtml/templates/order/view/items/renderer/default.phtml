@@ -1,0 +1,72 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $block->setPriceDataObject($_item) ?>
+<?php $customizeData = $block->getCustomizedcartdata(); ?>
+<?php
+//echo "<pre>";
+//print_r($customizeData);
+//echo "</pre>";
+$currency_helper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+?>
+<tr>
+    <td class="col-product">
+        <?php if ($block->canDisplayContainer()): ?>
+        <div id="<?php echo $block->getHtmlId() ?>">
+        <?php endif; ?>
+        <?php echo $block->getColumnHtml($_item, 'name') ?>
+        <?php if ($block->canDisplayContainer()): ?>
+        </div>
+        <?php endif ?>
+    </td>
+    <td class="col-status"><?php /* @escapeNotVerified */ echo $_item->getStatus() ?></td>
+    <td class="col-price-original"><?php /* @escapeNotVerified */ echo $block->displayPriceAttribute('original_price') ?></td>
+    <td class="col-price">
+        <?php echo $block->getColumnHtml($_item, 'price'); ?>
+    </td>
+    <td class="col-ordered-qty"><?php echo $block->getColumnHtml($_item, 'qty') ?></td>
+
+    <td class="col-subtotal">
+        <?php echo $block->getColumnHtml($_item, 'subtotal'); ?>
+    </td>
+    <td class="col-tax-amount"><?php /* @escapeNotVerified */ echo $block->displayPriceAttribute('tax_amount') ?></td>
+    <td class="col-tax-percent"><?php /* @escapeNotVerified */ echo $block->displayTaxPercent($_item) ?></td>
+    <td class="col-discont"><?php /* @escapeNotVerified */ echo $block->displayPriceAttribute('discount_amount') ?></td>
+    <td class="col-total last">
+        <?php echo $block->getColumnHtml($_item, 'total'); ?>
+    </td>
+</tr>
+<?php if(count($customizeData)) { ?>
+	<?php $i =1; ?>
+	<?php foreach($customizeData as $cData) { ?>
+		<tr>
+			<td colspan="2">
+				<div class="customizationUploaded">
+					<ul class="customization-ul">
+						<li class="customization-li">
+							<?php if($cData['image_name'] != '') { ?>
+								<div class="customization-img"><p><b><?php echo __('Picture '); ?>#<?php echo $i; ?></b></p><a target="_blank" href="<?php echo $this->getUrl('customizeproducts/orderview/downloadimage/cid/'.$cData['id'].'/name/'.$block->getorder()->getId().'-file'.$i); ?>"><img src="<?php echo $block->getcimageUrl($cData['image_name']); ?>" alt="<?php echo __('Download Image'); ?>"></a></div>
+								<?php $i++; ?>
+							<?php } ?>
+						</li>
+					</ul>
+				</div>
+			</td>
+			<td colspan="3" class="fancy-product"><button data-id_customization="<?php echo $cData['id']; ?>" data-pi="<?php echo $cData['product_id']; ?>" class="btn btn-default fpd-show-order-item"><?php echo __('Load in Order Viewer'); ?></button></td>
+			<td colspan="3"></td>
+			<td colspan="2">
+				<div class="customization-price">
+					<?php echo __('Additional Cost'); ?> : <?php echo $currency_helper->currency($cData['new_price'], true, false); ?>
+				</div>
+			</td>
+		</tr>
+	<?php } ?>
+<?php } ?>

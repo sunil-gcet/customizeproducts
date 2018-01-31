@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<head>
+		<!-- <css src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css" src_type="url" />
+		<css src="Chilliapple_Customizeproducts::framework/css/tagmanager.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/icon-font.css"/>
+		<css src="Chilliapple_Customizeproducts::framework/css/admin.css"/>
+		<css src="Chilliapple_Customizeproducts::framework/css/tooltipster.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/admin.css"/>
+		<css src="Chilliapple_Customizeproducts::css/jquery.customProductDesigner-fonts.css"/>	
+		
+        <link src="Chilliapple_Customizeproducts::js/fabric.js"/>
+        <link src="Chilliapple_Customizeproducts::js/admin/fabric.curvedText.js"/>
+        <link src="Chilliapple_Customizeproducts::js/admin/webfont.js"/>
+        <link src="Chilliapple_Customizeproducts::js/framework/tagmanager.js"/>
+        <link src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js?ver=3.5.2" src_type="url" />
+        <link src="Chilliapple_Customizeproducts::js/framework/admin.js"/>
+        <link src="Chilliapple_Customizeproducts::js/framework/jquery.tooltipster.min.js"/>
+        <link src="Chilliapple_Customizeproducts::js/admin/admin.js"/>
+        <link src="Chilliapple_Customizeproducts::js/admin/product-builder.js"/>
+		<css src="Chilliapple_Customizeproducts::css/customizeproducts.css"/> -->
+		<css src="Chilliapple_Customizeproducts::css/customizeproducts.css"/>
+		<css src="Chilliapple_Customizeproducts::css/back.css"/>
+		<css src="Chilliapple_Customizeproducts::css/colorpicker.css"/>
+		<css src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css" src_type="url" />
+		<css src="Chilliapple_Customizeproducts::css/admin/tagmanager.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/icon-font.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/admin_product_custom.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/tooltipster.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/admin.css"/>
+		
+		<link src="Chilliapple_Customizeproducts::js/colorpicker.js"/>
+		<link src="Chilliapple_Customizeproducts::js/fabric.js"/>
+		<link src="Chilliapple_Customizeproducts::admin/js/fabric.curvedText.js"/>
+		<link src="Chilliapple_Customizeproducts::admin/js/webfont.js"/>
+		<link src="Chilliapple_Customizeproducts::framework/js/tagmanager.js"/>
+		
+		<link src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js" src_type="url" />
+		<link src="Chilliapple_Customizeproducts::js/admin_product_custom.js"/>
+		<link src="Chilliapple_Customizeproducts::js/jquery.tooltipster.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/admin.js"/>
+		<link src="Chilliapple_Customizeproducts::admin/js/product-builder.js"/>
+		
+    </head>
+	<body>
+		<referenceContainer name="content">
+			<block name="productbuilder_defaultjs" class="Chilliapple\Customizeproducts\Block\Adminhtml\Order\Customizepage" template="customizelayers/productbuilder_defaultjs.phtml"/>
+			<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customizelayers\Index" name="customizelayers_index" template="customizelayers/index.phtml">
+				<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customizelayers\Index" as="parameters-list" template="customizelayers/parameters-list.phtml"/>
+			</block>
+		</referenceContainer>
+	</body>
+</page>

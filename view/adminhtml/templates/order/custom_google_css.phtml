@@ -1,0 +1,44 @@
+<?php if($block->getenabledFonts() != '') { ?>
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=<?php echo $block->getenabledFonts(); ?>" type="text/css" media="all" />
+<?php } ?>
+<script>
+<?php
+$enabledFonts = $this->_helperData->getEnabledGoogleFonts();
+$fontsString = '';
+if (!empty($enabledFonts)) {
+	foreach($enabledFonts as $fontName) {
+		$fontsString[] = '"'.$fontName.'"';
+	}
+}
+?>
+var cound_not = '<?php echo __('Could not load order item image. Please try again!'); ?>';
+var enabled_fonts = '<?php //echo @implode(",", $fontsString); ?>';
+var fpd_admin_opts = {"adminAjaxUrl":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","upload_image":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","checkToken":FORM_KEY,"enterTitlePrompt":"<?php echo __('Please enter a title'); ?>","tryAgain":"<?php echo __('Something went wrong. Please try again!');?>","addToLibrary":"<?php echo __('Add imported image source to media library?');?>","remove":"<?php echo __('Are you sure you want to delete it?');?>"};
+var fpd_product_builder_opts = {"adminUrl":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","upload_image":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","originX":"center","originY":"center","paddingControl":10,"defaultFont":"Arial","enterTitlePrompt":"<?php echo __('Enter a title for the element');?>","chooseElementImageTitle":"<?php echo __('Choose an element image');?>","set":"<?php echo __('Set');?>","enterYourText":"<?php echo __('Enter your text.');?>","removeElement":"<?php echo __('Remove element?');?>","notChanged":"<?php echo __('You have not saved your changes!');?>","changeImageSource":"<?php echo __('Change Image Source');?>"};
+var host_mode = false;
+var img_failed = '<?php echo __('Image creation failed. Please try again!');?>';
+var jsn_not_passed = '<?php echo __('JSON could not be parsed.');?>';
+var loading_data = '<?php echo __('Loading data...');?>';
+var no_element = '<?php echo __('No element selected!');?>';
+var no_fancy = '<?php echo __('No Fancy Product is selected. Please open one from the Order Items!');?>';
+var no_height = '<?php echo __('No height has been entered. Please set one!');?>';
+var no_svg = '<?php echo __('You cannot create an SVG file from a bitmap, you can only do this by using a text element or another SVG image file');?>';
+var no_width = '<?php echo __('No width has been entered. Please set one!');?>';
+var pdf_createion_failed = '<?php echo __('PDF creation failed - There is too much data being sent. To fix this please increase the Server memory limit in your php.ini file. You could export a single view or use the JPEG image format!');?>';
+var popu_up_b = '<?php echo __('Your Pop-Up Blocker is enabled so the image will be opened in a new window. Please choose to allow this website in your pop-up blocker!');?>';
+var stage_height = '700';
+var stage_width = '900';
+var template_dir = '<?php echo $this->getUrl('customizeproducts/designer/productdesigner/');?>';
+var editorbox_dir = '<?php echo $this->getUrl('customizeproducts/designer/editorbox/');?>';
+var canvaserror_dir = '<?php echo $this->getUrl('customizeproducts/designer/canvaserror/');?>';
+var thepostid = <?php echo $block->getOrderId(); ?>;
+</script>
+<script>
+require (['cust_fabric'], function() {
+	console.log("callback of cust_fabric");
+	require (['cust_slider', 'cust_jssocial', 'cust_front', 'cust_form', 'cust_pdesign', 'cust_fullscreen', 'cust_padmin', 'cust_padminorder'], function() {
+		console.log("callback of all others");
+		return;
+	});
+});
+</script>

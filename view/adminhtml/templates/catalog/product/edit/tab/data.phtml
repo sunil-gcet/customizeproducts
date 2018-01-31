@@ -1,0 +1,563 @@
+<?php
+/** @var $block \Chilliapple\Customizeproducts\Block\Adminhtml\Product\Edit\Tab\CustomizeData\Data */ ?>
+<?php
+$customProducts = $block->getcustomizeProduct();
+$customCategories = $block->getcustomizeCategories();
+$frameShadows = $block->getHelperData('frame_shadow');
+$dialogBox = $block->getHelperData('dialog_box');
+$viewSelection = $block->getHelperData('view_selection');
+$enabledFonts = $block->getHelperData('enabled_fonts');
+$statusOptions = $block->getHelperData('status_options');
+$customizeData = $block->getCustomizeData();
+if(count($customizeData)) {
+	$customizeSettings = $customizeData['cpd_product_settings'];
+}
+?>
+<div class="fieldset-wrapper admin__collapsible-block-wrapper opened" id="description_1">
+	<div class="fieldset-wrapper-title">
+		<strong
+			class="admin__collapsible-title"
+			data-toggle="collapse"
+			data-target="#1-content">
+			<span id="customizedata_1_header_title"><?php echo __('Customize Product'); ?></span>
+		</strong>
+	</div>
+	<input data-form-part="product_form" type="hidden" name="product[customize_data][product_customization_id]" id="product_customization_id" class="widefat" value="<?php echo (isset($customizeData['entity_id']) && $customizeData['entity_id']?$customizeData['entity_id']:"");?>" />
+	<div class="fieldset-wrapper-content in collapse" id="1-content">
+		<fieldset class="fieldset admin__fieldset user-defined">
+			<fieldset class="fieldset-alt" id="<?php echo $block->getFieldId() ?>_1">
+				<div class="field field-customizedata-input-type">
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_1_allow_custom">
+							<?php echo __('Allow Customization') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][allow_customization]" id="allow_customization">
+								<option value="0" <?php echo (isset($customizeData['_customize_product']) && $customizeData['_customize_product']=='0'?'selected':''); ?>><?php echo __('No'); ?></option>
+								<option value="1" <?php echo (isset($customizeData['_customize_product']) && $customizeData['_customize_product']=='1'?'selected':''); ?>><?php echo __('Yes'); ?></option>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_1_source_type">
+							<?php echo __('Source Type') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][source_type]" id="source_type">
+								<option value="category" <?php echo (isset($customizeData['cpd_source_type']) && $customizeData['cpd_source_type']=='category'?'selected':''); ?>><?php echo __('Category'); ?></option>
+								<option value="product" <?php echo (isset($customizeData['cpd_source_type']) && $customizeData['cpd_source_type']=='product'?'selected':''); ?>><?php echo __('Product'); ?></option>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom_products">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_1_custom_product">
+							<?php echo __('Customized Products') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" multiple="multiple" name="product[customize_data][customize_products][]" id="customize_products">
+								<?php foreach($customProducts as $product) { ?>
+									<option value="<?php echo $product['id']; ?>" <?php if(count($customizeData) && is_array($customizeData['cpd_products'])) { echo (isset($customizeData['cpd_products']) && in_array($product['id'], $customizeData['cpd_products'])?'selected':''); } ?>><?php echo $product['title']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type required custom_categories">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_1_custom_category">
+							<?php echo __('Customized Categories') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" multiple="multiple" name="product[customize_data][customize_categories][]" id="customize_categories">
+								<?php foreach($customCategories as $category) { ?>
+									<option value="<?php echo $category['id']; ?>" <?php if(count($customizeData) && is_array($customizeData['cpd_product_categories'])) { echo (in_array($category['id'], $customizeData['cpd_product_categories'])?'selected':''); } ?>><?php echo $category['title']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</fieldset>
+	</div>
+</div>
+<div class="tab-heading-custom">
+	<p><?php echo __('Individual Settings'); ?></p>
+</div>
+<div class="fieldset-wrapper admin__collapsible-block-wrapper" id="description_2">
+	<div class="fieldset-wrapper-title">
+		<strong
+			class="admin__collapsible-title active"
+			data-toggle="collapse"
+			data-target="#2-content">
+			<span id="customizedata_2_header_title"><?php echo __('General'); ?></span>
+		</strong>
+	</div>
+	<div class="fieldset-wrapper-content collapse" id="2-content" style="display: none; height: 0px;">
+		<fieldset class="fieldset admin__fieldset user-defined">
+			<fieldset class="fieldset-alt" id="<?php echo $block->getFieldId() ?>_2">
+				<div class="field field-customizedata-input-type">
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_product_image">
+							<?php echo __('Change Product Image') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][change_product_image]" id="change_product_image" value="1" <?php echo (isset($customizeSettings->change_product_image) && $customizeSettings->change_product_image == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_frame_shadow">
+							<?php echo __('Product Designer Frame Shadow') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][frame_shadow]" id="frame_shadow">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+							<?php foreach($frameShadows as $fData) { ?>
+								<option value="<?php echo $fData['value'];?>" <?php echo (isset($customizeSettings->frame_shadow) && $customizeSettings->frame_shadow == $fData['value'] ?'selected':''); ?>><?php echo $fData['label'];?></option>
+							<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_dialog_box">
+							<?php echo __('Dialog Box Positioning') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][dialog_box_positioning]" id="dialog_box_positioning">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+								<?php foreach($dialogBox as $dData) { ?>
+									<option value="<?php echo $dData['value']; ?>" <?php echo (isset($customizeSettings->dialog_box_positioning) && $customizeSettings->dialog_box_positioning == $dData['value'] ?'selected':''); ?>><?php echo $dData['label']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_title">
+							<?php echo __('View Selection Position') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][view_selection_position]" id="view_selection_position">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+								<?php foreach($viewSelection as $vData) { ?>
+									<option value="<?php echo $vData['value']; ?>" <?php echo (isset($customizeSettings->view_selection_position) && $customizeSettings->view_selection_position == $vData['value'] ?'selected':''); ?>><?php echo $vData['label']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_selection_item">
+							<?php echo __('View Selection Items') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][view_selection_floated]" id="view_selection_floated" value="1" <?php echo (isset($customizeSettings->view_selection_floated) && $customizeSettings->view_selection_floated == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_stage_width">
+							<?php echo __('Product Stage Width') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][stage_width]" id="stage_width" value="<?php echo (isset($customizeSettings->stage_width) ? $customizeSettings->stage_width:''); ?>" placeholder="1000" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_stage_height">
+							<?php echo __('Product Stage Height') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][stage_height]" id="stage_height" value="<?php echo (isset($customizeSettings->stage_height) ? $customizeSettings->stage_height:''); ?>" placeholder="600" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_enabled_fonts">
+							<?php echo __('Available Fonts') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][font_families][]" id="font_families" multiple="multiple">
+								<?php foreach($enabledFonts as $fData) { ?>
+									<option value="<?php echo $fData; ?>" style="font-family:<?php echo $fData; ?>" <?php echo (isset($customizeSettings->font_families) && in_array($fData, $customizeSettings->font_families)?'selected':''); ?>><?php echo $fData; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_lightbox">
+							<?php echo __('Open in lightbox') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][open_in_lightbox]" id="open_in_lightbox">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+								<?php foreach($statusOptions as $sData) { ?>
+									<option value="<?php echo $sData['value']; ?>" <?php echo (isset($customizeSettings->open_in_lightbox) && $customizeSettings->open_in_lightbox == $sData['value'] ? "selected": ''); ?>><?php echo $sData['label']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_replace_initial">
+							<?php echo __('Replace Initial Elements') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][replace_initial_elements]" id="replace_initial_elements">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+								<?php foreach($statusOptions as $sData) { ?>
+									<option value="<?php echo $sData['value']; ?>" <?php echo (isset($customizeSettings->replace_initial_elements) && $customizeSettings->replace_initial_elements == $sData['value'] ? "selected": ''); ?>><?php echo $sData['label']; ?></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_disable_image">
+							<?php echo __('Disable Image Upload') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][hide_custom_image_upload]" id="hide_custom_image_upload" value="1" <?php echo (isset($customizeSettings->hide_custom_image_upload) && $customizeSettings->hide_custom_image_upload == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_disable_custom_text">
+							<?php echo __('Disable Custom Text') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][hide_custom_text]" id="hide_custom_text" value="1" <?php echo (isset($customizeSettings->hide_custom_text) && $customizeSettings->hide_custom_text == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_disable_facebook">
+							<?php echo __('Disable Facebook') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][hide_facebook_tab]" id="hide_facebook_tab" value="1" <?php echo (isset($customizeSettings->hide_facebook_tab) && $customizeSettings->hide_facebook_tab == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_2_disable_instagram">
+							<?php echo __('Disable Instagram') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][hide_instagram_tab]" id="hide_instagram_tab" value="1" <?php echo (isset($customizeSettings->hide_instagram_tab) && $customizeSettings->hide_instagram_tab == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</fieldset>
+	</div>
+</div>
+<div class="fieldset-wrapper admin__collapsible-block-wrapper" id="description_3">
+	<div class="fieldset-wrapper-title">
+		<strong
+			class="admin__collapsible-title active"
+			data-toggle="collapse"
+			data-target="#3-content">
+			<span id="customizedata_3_header_title"><?php echo __('Image Options'); ?></span>
+		</strong>
+	</div>
+	<div class="fieldset-wrapper-content collapse" id="3-content" style="display: none; height: 0px;">
+		<fieldset class="fieldset admin__fieldset user-defined">
+			<fieldset class="fieldset-alt" id="<?php echo $block->getFieldId() ?>_3">
+				<div class="field field-customizedata-input-type">
+					<div class="field field-customizedata-input-type">
+						<label class="label tab-heading-custom" for="<?php echo $block->getFieldId() ?>_3_sub_heading">
+							<?php echo __('Common Image') ?><em></em>
+						</label>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_price">
+							<?php echo __('Price') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" min="0" step="0.01" name="product[customize_data][designs_parameter_price]" id="designs_parameter_price" value="<?php echo (isset($customizeSettings->designs_parameter_price) ? $customizeSettings->designs_parameter_price : ''); ?>" placeholder="0.01" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_replace">
+							<?php echo __('Replace') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][designs_parameter_replace]" id="designs_parameter_replace" value="<?php echo (isset($customizeSettings->designs_parameter_replace) ? $customizeSettings->designs_parameter_replace : ''); ?>" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_control">
+							<?php echo __('Bounding Box') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][designs_parameter_bounding_box_control]" id="designs_parameter_bounding_box_control">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+								<option value="custom-bb" data-class="custom-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_control) && $customizeSettings->designs_parameter_bounding_box_control == 'custom-bb' ? "selected": ''); ?>><?php echo __('Custom Bounding Box') ?></option>
+								<option value="target-bb" data-class="target-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_control) && $customizeSettings->designs_parameter_bounding_box_control == 'target-bb' ? "selected": ''); ?>><?php echo __('Use another element as bounding box') ?></option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_x) && $customizeSettings->designs_parameter_bounding_box_x != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_x">
+							<?php echo __('Bounding Box X-Position') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][designs_parameter_bounding_box_x]" id="designs_parameter_bounding_box_x" value="<?php echo (isset($customizeSettings->designs_parameter_bounding_box_x) ? $customizeSettings->designs_parameter_bounding_box_x : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_y) && $customizeSettings->designs_parameter_bounding_box_y != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_y">
+							<?php echo __('Bounding Box Y-Position') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][designs_parameter_bounding_box_y]" id="designs_parameter_bounding_box_y" value="<?php echo (isset($customizeSettings->designs_parameter_bounding_box_y) ? $customizeSettings->designs_parameter_bounding_box_y : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_width) && $customizeSettings->designs_parameter_bounding_box_width != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_width">
+							<?php echo __('Bounding Box Width') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][designs_parameter_bounding_box_width]" id="designs_parameter_bounding_box_width" value="<?php echo (isset($customizeSettings->designs_parameter_bounding_box_width) ? $customizeSettings->designs_parameter_bounding_box_width : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_height) && $customizeSettings->designs_parameter_bounding_box_height != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_height">
+							<?php echo __('Bounding Box Height') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][designs_parameter_bounding_box_height]" id="designs_parameter_bounding_box_height" value="<?php echo (isset($customizeSettings->designs_parameter_bounding_box_height) ? $customizeSettings->designs_parameter_bounding_box_height : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type target-bb" <?php echo (isset($customizeSettings->designs_parameter_bounding_box_by_other) && $customizeSettings->designs_parameter_bounding_box_by_other != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_by_other">
+							<?php echo __('Bounding Box Target') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][designs_parameter_bounding_box_by_other]" id="designs_parameter_bounding_box_by_other" value="<?php echo (isset($customizeSettings->designs_parameter_bounding_box_by_other) ? $customizeSettings->designs_parameter_bounding_box_by_other : ''); ?>" placeholder="image" />
+						</div>
+					</div>
+					
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_filters">
+							<?php echo __('Hide Filters') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="checkbox" name="product[customize_data][designs_parameter_filters]" id="designs_parameter_filters" value="1" <?php echo (isset($customizeSettings->designs_parameter_filters) && $customizeSettings->designs_parameter_filters == '1' ? "checked": ''); ?> />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label tab-heading-custom" for="<?php echo $block->getFieldId() ?>_3_sub_heading_2">
+							<?php echo __('Custom Image') ?><em></em>
+						</label>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_uploaded_designs_parameter_minW">
+							<?php echo __('Minimum Width') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][uploaded_designs_parameter_minW]" id="uploaded_designs_parameter_minW" value="<?php echo (isset($customizeSettings->uploaded_designs_parameter_minW) ? $customizeSettings->uploaded_designs_parameter_minW : ''); ?>" placeholder="100" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_uploaded_designs_parameter_minH">
+							<?php echo __('Minimum Height') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][uploaded_designs_parameter_minH]" id="uploaded_designs_parameter_minH" value="<?php echo (isset($customizeSettings->uploaded_designs_parameter_minH) ? $customizeSettings->uploaded_designs_parameter_minH : ''); ?>" placeholder="100" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_uploaded_designs_parameter_maxW">
+							<?php echo __('Maximum Width') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][uploaded_designs_parameter_maxW]" id="uploaded_designs_parameter_maxW" value="<?php echo (isset($customizeSettings->uploaded_designs_parameter_maxW) ? $customizeSettings->uploaded_designs_parameter_maxW : ''); ?>" placeholder="1000" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_uploaded_designs_parameter_maxH">
+							<?php echo __('Maximum Height') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][uploaded_designs_parameter_maxH]" id="uploaded_designs_parameter_maxH" value="<?php echo (isset($customizeSettings->uploaded_designs_parameter_maxH) ? $customizeSettings->uploaded_designs_parameter_maxH : ''); ?>" placeholder="1000" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_uploaded_designs_parameter_resizeToW">
+							<?php echo __('Resize To Width') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][uploaded_designs_parameter_resizeToW]" id="uploaded_designs_parameter_resizeToW" value="<?php echo (isset($customizeSettings->uploaded_designs_parameter_resizeToW) ? $customizeSettings->uploaded_designs_parameter_resizeToW : ''); ?>" placeholder="100" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_uploaded_designs_parameter_resizeToH">
+							<?php echo __('Resize To Height') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][uploaded_designs_parameter_resizeToH]" id="uploaded_designs_parameter_resizeToH" value="<?php echo (isset($customizeSettings->uploaded_designs_parameter_resizeToH) ? $customizeSettings->uploaded_designs_parameter_resizeToH : ''); ?>" placeholder="100" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</fieldset>
+	</div>
+</div>
+<div class="fieldset-wrapper admin__collapsible-block-wrapper" id="description_4">
+	<div class="fieldset-wrapper-title">
+		<strong
+			class="admin__collapsible-title active"
+			data-toggle="collapse"
+			data-target="#4-content">
+			<span id="customizedata_4_header_title"><?php echo __('Custom Text Options'); ?></span>
+		</strong>
+	</div>
+	<div class="fieldset-wrapper-content collapse" id="4-content" style="display: none; height: 0px;">
+		<fieldset class="fieldset admin__fieldset user-defined">
+			<fieldset class="fieldset-alt" id="<?php echo $block->getFieldId() ?>_4">
+				<div class="field field-customizedata-input-type">
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_4_custom_texts_parameter_replace">
+							<?php echo __('Replace') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][custom_texts_parameter_replace]" id="custom_texts_parameter_replace" value="<?php echo (isset($customizeSettings->custom_texts_parameter_replace) ? $customizeSettings->custom_texts_parameter_replace : ''); ?>" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_4_custom_texts_parameter_bounding_box_control">
+							<?php echo __('Bounding Box') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<select data-form-part="product_form" name="product[customize_data][custom_texts_parameter_bounding_box_control]" id="custom_texts_parameter_bounding_box_control">
+								<option value=""><?php echo __('Use Option From Main Settings') ?></option>
+								<option value="custom-bb" data-class="custom-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_control) && $customizeSettings->custom_texts_parameter_bounding_box_control == 'custom-bb' ? "selected": ''); ?>><?php echo __('Custom Bounding Box') ?></option>
+								<option value="target-bb" data-class="target-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_control) && $customizeSettings->custom_texts_parameter_bounding_box_control == 'target-bb' ? "selected": ''); ?>><?php echo __('Use another element as bounding box') ?></option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_x) && $customizeSettings->custom_texts_parameter_bounding_box_x != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_x">
+							<?php echo __('Bounding Box X-Position') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][custom_texts_parameter_bounding_box_x]" id="custom_texts_parameter_bounding_box_x" value="<?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_x) ? $customizeSettings->custom_texts_parameter_bounding_box_x : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_y) && $customizeSettings->custom_texts_parameter_bounding_box_y != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_y">
+							<?php echo __('Bounding Box Y-Position') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][custom_texts_parameter_bounding_box_y]" id="custom_texts_parameter_bounding_box_y" value="<?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_y) ? $customizeSettings->custom_texts_parameter_bounding_box_y : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_width) && $customizeSettings->custom_texts_parameter_bounding_box_width != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_width">
+							<?php echo __('Bounding Box Width') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][custom_texts_parameter_bounding_box_width]" id="custom_texts_parameter_bounding_box_width" value="<?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_width) ? $customizeSettings->custom_texts_parameter_bounding_box_width : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type custom-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_height) && $customizeSettings->custom_texts_parameter_bounding_box_height != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_height">
+							<?php echo __('Bounding Box Height') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" name="product[customize_data][custom_texts_parameter_bounding_box_height]" id="custom_texts_parameter_bounding_box_height" value="<?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_height) ? $customizeSettings->custom_texts_parameter_bounding_box_height : ''); ?>" min="0" step"1" />
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type target-bb" <?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_by_other) && $customizeSettings->custom_texts_parameter_bounding_box_by_other != '' ? 'style="display:block"' : ''); ?>>
+						<label class="label" for="<?php echo $block->getFieldId() ?>_3_designs_parameter_bounding_box_by_other">
+							<?php echo __('Bounding Box Target') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][custom_texts_parameter_bounding_box_by_other]" id="custom_texts_parameter_bounding_box_by_other" value="<?php echo (isset($customizeSettings->custom_texts_parameter_bounding_box_by_other) ? $customizeSettings->custom_texts_parameter_bounding_box_by_other : ''); ?>" placeholder="image" />
+						</div>
+					</div>
+					
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_4_custom_texts_parameter_price">
+							<?php echo __('Price') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="number" min="0" step="0.01" name="product[customize_data][custom_texts_parameter_price]" id="custom_texts_parameter_price" value="<?php echo (isset($customizeSettings->custom_texts_parameter_price) ? $customizeSettings->custom_texts_parameter_price : ''); ?>"  placeholder="0.01"/>
+						</div>
+					</div>
+					<div class="field field-customizedata-input-type">
+						<label class="label" for="<?php echo $block->getFieldId() ?>_4_custom_texts_parameter_colors">
+							<?php echo __('Colors') ?><em></em>
+						</label>
+						<div class="control customizedata-customizedata">
+							<input data-form-part="product_form" type="text" name="product[customize_data][custom_texts_parameter_colors]" id="custom_texts_parameter_colors" value="<?php echo (isset($customizeSettings->custom_texts_parameter_colors) ? $customizeSettings->custom_texts_parameter_colors : ''); ?>"  placeholder="#000000"/>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</fieldset>
+	</div>
+</div>
+<script>
+require([
+	"jquery",
+], function(jQuery){
+
+	jQuery(function ($) {
+		
+		var prvious_light_state = false;
+		var prvious_light_value = '';
+		
+		if($("#source_type").val() == 'category') {
+			$(".custom_categories").show();
+			$(".custom_products").hide();
+		} else if($("#source_type").val() == 'product') {
+			$(".custom_products").show();
+			$(".custom_categories").hide();
+		}
+		
+		//bounding box switcher
+		$('#designs_parameter_bounding_box_control, #custom_texts_parameter_bounding_box_control').change(function() {
+
+			var $this = $(this),
+				$tbody = $this.parents('.field-customizedata-input-type');
+
+			$tbody.find('.custom-bb, .target-bb').hide().addClass('no-serialization');
+			if(this.value != '') {
+				$tbody.find('.'+$this.find(":selected").data('class')).show().removeClass('no-serialization');
+			}
+
+
+		});
+		
+		$("#source_type").on('change', function(){
+			if($("#source_type").val() == 'category') {
+				$(".custom_categories").show();
+				$(".custom_products").hide();
+			} else if($("#source_type").val() == 'product') {
+				$(".custom_products").show();
+				$(".custom_categories").hide();
+			}
+			
+		});
+		
+		$("#change_product_image").on('change', function(evt) {
+            if ($(this).is(':checked')) {
+                prvious_light_value = $("#open_in_lightbox").val();
+                $("#open_in_lightbox option[value='0']").prop('selected', true);
+                prvious_light_state = true;
+            } else {
+                if (prvious_light_state)
+                {
+                    $("#open_in_lightbox option[value='"+prvious_light_value+"']").prop('selected', true);
+                    prvious_light_state = false;
+                }
+            }
+        });
+		$("#open_in_lightbox").on('change', function(evt) {            
+            if ($('#change_product_image').is(':checked') && ($(this).val() != 0 || $(this).val() == ''))
+            {
+                alert("You have selected Change Product Image. So it must be No");
+                $("#open_in_lightbox option[value='0']").prop('selected', true);
+            }
+        });
+		
+		<?php /*foreach($this->getcustomizeData() as $detDesc): ?>
+			fieldSet.customDescription('addDescription', <?php echo $detDesc->toJson() ?>);
+		<?php endforeach;*/ ?>
+		
+	});
+});
+</script>

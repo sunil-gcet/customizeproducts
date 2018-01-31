@@ -1,0 +1,386 @@
+<?php
+$allfonts = $this->getEnabledFonts();
+?>
+<div class="col-md-7">
+	<div class="panel">
+		<div class="panel-heading"><?php echo __('Layer Options'); ?></div>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#general-options"><?php echo __('General'); ?></a></li>
+			<li><a href="#modifications-options"><?php echo __('Modifications'); ?></a></li>
+			<li><a href="#bb-options" style="display: block;"><?php echo __('Bounding Box'); ?></a></li>
+			<li><a href="#text-options" class="only-for-text-elements" style="display: block;"><?php echo __('Text'); ?></a></li>
+			<li><a href="#upload-zone-options" class="only-for-upload-zones" style="display: none;"><?php echo __('Media Types'); ?></a></li>
+		</ul>
+		<form role="form" id="fpd-elements-form" class="form-horizontal">
+			<!-- Hidden inputs for parameters set are set to true by default -->
+			<input type="hidden" name="editable" value="0">
+			<input type="checkbox" name="locked" value="1" class="fpd-hidden">
+			<input type="checkbox" name="uploadZone" value="1" class="fpd-hidden">
+
+			<div class="tab-content panel">
+				<div id="general-options" class="tab-pane">
+					<div class="form-wrapper">
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Position - x'); ?> : </div>
+							<div class="col-lg-4"><input type="text" name="x" size="3" placeholder="0" class="fpd-only-numbers input form-control"></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Position - y'); ?> : </div>
+							<div class="col-lg-4"><input type="text" name="y" size="3" placeholder="0" class="fpd-only-numbers input form-control"></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Scale'); ?> : </div>
+							<div class="col-lg-4"><input type="text" name="scale" size="3" placeholder="1" class="fpd-only-numbers fpd-allow-dots input form-control"></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Angle'); ?> : </div>
+							<div class="col-lg-4"><input type="text" name="angle" size="3" placeholder="0" class="fpd-only-numbers input form-control"></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Price'); ?> : </div>
+							<div class="col-lg-4"><input type="text" name="price" size="3" placeholder="0" class="fpd-prevent-whitespace fpd-only-numbers fpd-allow-dots input form-control"></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Replace'); ?> : </div>
+							<div class="col-lg-4"><input type="text" name="replace" value="" class="input-sm input form-control"></div>
+							<div class="col-lg-9 col-lg-offset-3"><div class="help-block"><?php echo __('Elements with the same replace name will replace each other.'); ?></div></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Colors'); ?> : </div>
+							<div class="col-lg-4" id="fpd-color-inputs">                        
+								<input type="text" name="colors" class="tm-input input form-control" placeholder="#000000,#ffffff" size="20"><input type="hidden" name="hidden-colors">
+								<a href="#" class="button button-secondary" id="fpd-add-color"><?php echo __('Add'); ?></a>
+							</div>
+							<div class="col-lg-9 col-lg-offset-3"><div class="help-block"><?php echo __('One color value: Colorpicker, Multiple color values: Fixed color palette'); ?></div></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Current Color'); ?> : </div>
+							<div class="col-lg-4">                        
+								<input type="text" name="currentColor" class="input form-control" placeholder="e.g. #000000" size="20">
+							</div>
+							<div class="col-lg-9 col-lg-offset-3"><div class="help-block"><?php echo __('Enter one hexadecimal color to change the initial color of this element.'); ?></div></div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Opacity'); ?> : </div>
+							<div class="col-lg-4">                        
+								<input type="text" name="opacity" onchange="handleChange(this);" class="fpd-only-numbers fpd-allow-dots input form-control" placeholder="1" size="3">
+							</div>
+							<div class="col-lg-9 col-lg-offset-3"><div class="help-block"><?php echo __('A value between 0-1'); ?></div></div>
+						</div>
+					</div>
+				</div>
+				<div id="modifications-options" class="tab-pane">
+					<div class="form-wrapper">
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-removable">
+									<input type="checkbox" name="removable" id="opt-removable" value="1">
+									<?php echo __('Removable'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-draggable">
+									<input type="checkbox" name="draggable" id="opt-draggable" value="1">
+									<?php echo __('Draggable'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-rotatable">
+									<input type="checkbox" name="rotatable" id="opt-rotatable" value="1">
+									<?php echo __('Rotatable'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-resizable">
+									<input type="checkbox" name="resizable" id="opt-resizable" value="1">
+									<?php echo __('Resizable'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-zChangeable">
+									<input type="checkbox" name="zChangeable" id="opt-zChangeable" value="1">
+									<?php echo __('Unlock Layer Position'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-topped">
+									<input type="checkbox" name="topped" id="topped" value="1">
+									<?php echo __('Stay On Top'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-autoSelect">
+									<input type="checkbox" name="autoSelect" id="opt-autoSelect" value="1">
+									<?php echo __('Auto-Select'); ?>
+								</label>
+							</div>                    
+						</div>
+					</div>
+				</div>
+				<div id="bb-options" class="tab-pane">
+					<div class="form-wrapper">
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-5">&nbsp;</div>
+								<label for="opt-bounding_box_control">
+									<input type="checkbox" name="bounding_box_control" id="opt-bounding_box_control" value="1">
+									<?php echo __('Use another element as bounding box'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div id="boundig-box-params">
+							<div class="form-group row">
+								<div class="control-label col-lg-5"><?php echo __('Define Bounding Box - X'); ?> : </div>
+								<div class="col-lg-4">
+									<input type="text" name="bounding_box_x" size="3" placeholder="0" class="input form-control">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="control-label col-lg-5"><?php echo __('Define Bounding Box - y'); ?> : </div>
+								<div class="col-lg-4">
+									<input type="text" name="bounding_box_y" size="3" placeholder="0" class="input form-control">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="control-label col-lg-5"><?php echo __('Define Bounding Box - width'); ?> : </div>
+								<div class="col-lg-4">
+									<input type="text" name="bounding_box_width" size="3" placeholder="0" class="input form-control">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="control-label col-lg-5"><?php echo __('Define Bounding Box - height'); ?> : </div>
+								<div class="col-lg-4">
+									<input type="text" name="bounding_box_height" size="3" placeholder="0" class="input form-control">
+								</div>
+							</div>                        
+						</div>
+						<div class="form-group row bounding_box_by_other hidden">
+							<div class="control-label col-lg-5"><?php echo __('Define Bounding Box'); ?> : </div>
+							<div class="col-lg-4">
+								<input type="text" name="bounding_box_by_other" size="3" placeholder="<?php echo __('Title of an image element in the same view.'); ?>" class="widefat input-sm input form-control">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-5">&nbsp;</div>
+								<label for="opt-boundingBoxClipping">
+									<input type="checkbox" name="boundingBoxClipping" id="opt-boundingBoxClipping" value="1">
+									<?php echo __('Clip element into bounding box'); ?>
+								</label>
+							</div>                    
+						</div>
+					</div>
+				</div>
+				<div id="text-options" class="tab-pane active">
+					<div class="form-wrapper">
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Font'); ?> : </div>
+							<div class="col-lg-4">
+								<select name="font" class="fpd-font-changer">
+									<option><?php echo __('Select a font'); ?></option>
+									<?php foreach($allfonts as $font) : ?>
+										<option value="<?php echo $font; ?>" style="font-family: <?php echo $font; ?>"><?php echo $font; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Styling'); ?> : </div>
+							<div class="col-lg-4">
+								<span class="fpd-text-styling">
+									<a href="javascript:void(0);" class="fpd-bold button"><i class="fpd-admin-icon-format-bold"></i></a>
+									<a href="javascript:void(0);" class="fpd-italic button"><i class="fpd-admin-icon-format-italic"></i></a>
+									<a href="javascript:void(0);" class="fpd-underline button"><i class="fpd-admin-icon-format-underline"></i></a>
+									<input type="checkbox" name="fontWeight" value="bold" class="fpd-hidden">
+									<input type="checkbox" name="fontStyle" value="italic" class="fpd-hidden">
+									<input type="checkbox" name="textDecoration" value="underline" class="fpd-hidden">
+								</span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Multiline Alignment'); ?> : </div>
+							<div class="col-lg-4">
+								<span class="fpd-text-align">
+									<a href="#" class="fpd-align-left button" data-value="left"><i class="fpd-admin-icon-format-align-left"></i></a>
+									<a href="#" class="fpd-align-center button active" data-value="center"><i class="fpd-admin-icon-format-align-center"></i></a>
+									<a href="#" class="fpd-align-right button" data-value="right"><i class="fpd-admin-icon-format-align-right"></i></a>
+									<input type="hidden" name="textAlign" value="center">
+								</span>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Maximum Characters'); ?> : </div>
+							<div class="col-lg-4">
+								<input type="text" name="maxLength" size="3" placeholder="0" class="fpd-only-numbers input form-control">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="control-label col-lg-3"><?php echo __('Line Height'); ?> : </div>
+							<div class="col-lg-4">
+								<input type="text" name="maxLength" size="3" placeholder="1" class="fpd-only-numbers fpd-allow-dots input form-control">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-editable">
+									<input type="checkbox" name="editable" id="opt-editable" value="1">
+									<?php echo __('Editable'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-patternable">
+									<input type="checkbox" name="patternable" id="opt-patternable" value="1">
+									<?php echo __('Patternable'); ?>
+								</label>
+							</div>                    
+						</div>
+						<div class="form-group row">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-curvable">
+									<input type="checkbox" name="curvable" id="opt-curvable" value="1">
+									<?php echo __('Curvable'); ?>
+								</label>
+								<div class="col-lg-9 col-lg-offset-3"><div class="help-block"><?php echo __('Allow customer to switch between curvable and normal text.'); ?></div></div>
+							</div>                    
+						</div>
+						<div class="form-group row fpd-curved-text-opts" style="display: block;">
+							<div class="control-label col-lg-3"><?php echo __('Curved Text Spacing'); ?> : </div>
+							<div class="col-lg-4">
+								<input type="checkbox" name="curved" value="1" class="hidden">
+								<input type="text" name="curveSpacing" size="3" placeholder="10" class="fpd-only-numbers input form-control">
+							</div>
+						</div>
+						<div class="form-group row fpd-curved-text-opts" style="display: block;">
+							<div class="control-label col-lg-3"><?php echo __('Curved Text Radius'); ?> : </div>
+							<div class="col-lg-4">                        
+								<input type="text" name="curveRadius" size="3" placeholder="80" class="fpd-only-numbers input form-control">
+							</div>
+						</div>
+						<div class="form-group row fpd-curved-text-opts" style="display: block;">
+							<div class="checkbox">
+								<div class="col-lg-3">&nbsp;</div>
+								<label for="opt-curveReverse">
+									<input type="checkbox" name="curveReverse" id="opt-curveReverse" value="1">
+									<?php echo __('Curved Text Reverse'); ?>
+								</label>                        
+							</div>                    
+						</div>
+					</div>
+				</div>
+				<div id="upload-zone-options" class="tab-pane">
+					<div class="form-wrapper">
+						<div class="form-group row">
+							<label class="control-label col-lg-3"><?php echo __('Image Uploads'); ?></label>
+							<div class="col-lg-4">
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_uploads" value="1">
+										<?php echo __('Yes'); ?>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_uploads" value="0">
+										<?php echo __('No'); ?>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="control-label col-lg-3"><?php echo __('Custom Texts'); ?></label>
+							<div class="col-lg-4">
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_texts" value="1">
+										<?php echo __('Yes'); ?>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_texts" value="0">
+										<?php echo __('No'); ?>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="control-label col-lg-3"><?php echo __('Designs'); ?></label>
+							<div class="col-lg-4">
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_designs" value="1">
+										<?php echo __('Yes'); ?>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_designs" value="0">
+										<?php echo __('No'); ?>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="control-label col-lg-3"><?php echo __('Facebook Photos'); ?></label>
+							<div class="col-lg-4">
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_facebook" value="1">
+										<?php echo __('Yes'); ?>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_facebook" value="0">
+										<?php echo __('No'); ?>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="control-label col-lg-3"><?php echo __('Instagram Photos'); ?></label>
+							<div class="col-lg-4">
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_instagram" value="1">
+										<?php echo __('Yes'); ?>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="adds_instagram" value="0">
+										<?php echo __('No'); ?>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

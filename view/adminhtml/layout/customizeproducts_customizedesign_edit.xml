@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customizedesign\Edit" name="customizeproducts_customizedesign_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customizedesign\Edit\Tabs" name="customizeproducts_customizedesign_edit_tabs">
+				<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Customizedesign\Edit\Tab\Customizedesign" name="customizeproducts_customizedesign_edit_tab_customizedesign"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">customizedesign_section</argument>
+                    <argument name="block" xsi:type="string">customizeproducts_customizedesign_edit_tab_customizedesign</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

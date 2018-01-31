@@ -1,0 +1,129 @@
+<?php
+/**
+ * Copyright © 2015 chilliapplecommerce. All rights reserved.
+ */
+?>
+<?php
+/**
+ * {{controller}} {{action}} template
+ *
+ * @var $block \Chilliapple\Customizeproducts\Block\Adminhtml\Customizelayers\Index
+ */
+$productViews = $this->getProductViews();
+$layerId = $this->getLayerid();
+$optionsData = $this->renderOptions($layerId);
+//echo $currentLayerData;
+$productId = $this->getProductId();
+$stage_width = $this->getCanvaswidth();
+$stage_height = $this->getCanvasheight();
+?>
+<script type="text/javascript">
+    /*require(['jquery','customizeproducts'],function($){
+        $(window).load(function() {
+            alert("gdfg");
+        });
+    });*/
+	var ADMIN_LAYER_AJAX = '<?php echo $block->getUrl('customizeproducts/customizelayers/ajax') ?>';
+	var ADMIN_LAYER_UPLOADIMAGE = '<?php echo $block->getUrl('customizeproducts/customizelayers/uploadimage') ?>';
+</script>
+<div id="main">
+	<div id="content">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="leadin"></div>
+				<div id="container" class="row">
+					<div id="fpd-product-builder" class="form-horizontal col-md-12">
+						<?php if ($this->getProductCount() == 0) { ?>
+							<div class="panel">
+								<div class="form-wrapper">
+									<div class="alert alert-warning"><?php echo __('There are no customizable products at the moment!'); ?></div>
+								</div>
+							</div>
+						<?php } else { ?>
+							<div class="panel">
+								<div class="panel-heading"><?php echo __('Views'); ?></div>
+								<div class="form-wrapper">
+									<div class="form-group row">
+										<div class="control-label col-lg-3"><?php echo __('Select the view of your Customize Product');?></div>
+										<div class="col-lg-4">
+											<input type="hidden" value="<?php echo $this->getUrl('customizeproducts/customizelayers/index') ?>
+" id="fpd_site_url" name="fpd_site_url">
+											<select id="fpd-view-switcher">
+												<?php foreach($productViews as $optId => $optsions) :?>
+													<optgroup label="<?php echo $optsions['label'];?>" id="<?php echo $optId; ?>">
+														<?php if(count($optsions['value']) > 0): ?>
+															<?php foreach($optsions['value'] as $options) :?>
+																<option <?php echo ($layerId == $options['id'] ? 'selected="selected"' : '') ?> value="<?php echo $options['id'];?>"><?php echo $options['title'];?></option>
+															<?php endforeach; ?>
+														<?php endif; ?>
+													</optgroup>
+												<?php endforeach; ?>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="panel">                            
+										<div id="fpd-layers-container" class="clearfix">
+											<div class="col-md-5">
+												<!-- Manage elements -->
+												<div class="panel">
+													<div class="panel-heading">
+														<?php echo __('Layers'); ?>
+													</div>
+													<div name="fpd-submit-form">
+														<form method="post" id="fpd-submit" enctype="multipart/form-data">
+															<input type="submit" class="fpd-hidden" name="save_elements">
+															<input name="form_key" type="hidden" value="<?php /* @escapeNotVerified */ echo $block->getFormKey() ?>" />
+															<div id="fpd-add-element" class="btn-group">
+																<a href="javascript:void(0);" class="btn btn-default" id="fpd-add-image-element"><?php echo __('Add Image'); ?></a>
+																<a href="javascript:void(0);" class="btn btn-default" id="fpd-add-text-element"><?php echo __('Add Text'); ?></a>
+																<a href="javascript:void(0);" class="btn btn-default" id="fpd-add-curved-text-element"><?php echo __('Add Curved Text'); ?></a>
+																<input type="file" style="display:none;" name="fpd-add-image-element-image" id="fpd-add-image-element-image">
+																<a href="javascript:void(0);" class="btn btn-default" id="fpd-add-upload-zone"><?php echo __('Add Upload Zone'); ?></a>
+
+															</div>
+
+															<input type="hidden" value="<?php echo $layerId; ?>" name="view_id">
+															<p class="help-block"><?php echo __('Change the layer order by dragging elements up or down.'); ?></p>
+															<ul id="fpd-elements-list" class="ui-sortable">
+																<?php echo $optionsData; ?>
+															</ul>
+														</form>
+													</div>
+												</div>
+											</div>
+											<?php echo $block->getChildHtml('parameters-list'); ?>
+										</div>
+										<div class="panel-footer">
+											<button type="button" id="fpd-save-layers" class="btn btn-default pull-right" name="submitSaveLayers">
+												<i class="process-icon-save"></i><?php echo __('Save Layers'); ?>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Product Stage -->
+							<div id="fpd-product-stage" class="panel">
+								<div class="panel-heading">
+									<?php echo __('Product Stage'); ?>
+								</div>                    
+								<span class="help-block"><?php echo $stage_width; ?><?php echo __('px'); ?> * <?php echo $stage_height; ?><?php echo __('px'); ?></span>
+								</h3>
+								<div id="fpd-element-toolbar">
+									<a href="javascript:void(0);" class="button button-secondary fpd-center-horizontal"><?php echo __('Center Horizontal'); ?></a>
+									<a href="javascript:void(0);" class="button button-secondary fpd-center-vertical"><?php echo __('Center Vertical'); ?></a>
+								</div>
+								<div id="fpd-fabric-stage-wrapper">
+									<canvas id="fpd-fabric-stage" width="<?php echo $stage_width; ?>" height="<?php echo $stage_height; ?>"></canvas>
+								</div>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

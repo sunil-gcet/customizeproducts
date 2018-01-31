@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Chilliapple_Customizeproducts::css/customizeproducts.css"/>
+        <css src="Chilliapple_Customizeproducts::css/back.css"/>
+        <css src="Chilliapple_Customizeproducts::css/colorpicker.css"/>
+        <css src="Chilliapple_Customizeproducts::css/jquery.customProductDesigner.min.css"/>
+        <css src="Chilliapple_Customizeproducts::css/admin/icon-font.css"/>
+        <css src="Chilliapple_Customizeproducts::css/admin/tooltipster.css"/>
+		<css src="Chilliapple_Customizeproducts::css/admin/admin.css"/>
+		
+		<!-- <script type="text/javascript" src="Chilliapple_Customizeproducts::js/colorpicker.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/core.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/widget.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/mouse.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/draggable.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/resizable.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/sortable.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/slider.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/fabric.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/jquery.customProductDesigner.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/jquery.tooltipster.min.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/admin/admin.js"></script>
+		<script type="text/javascript" src="Chilliapple_Customizeproducts::js/admin/admin-order.js"></script> -->
+		
+	</head>
+    <body>
+		<referenceContainer name="content">
+            <block class="Chilliapple\Customizeproducts\Block\Adminhtml\Order\Customizepage" name="block_order_view" template="Chilliapple_Customizeproducts::order/custom_google_css.phtml" />
+        </referenceContainer>
+		<referenceContainer name="content">
+			<block class="Chilliapple\Customizeproducts\Block\Adminhtml\Order\Customizepage" name="product.view.customizepage"
+				template="Chilliapple_Customizeproducts::order/customizepage.phtml" after="-">
+			</block>
+		</referenceContainer>
+        <referenceBlock name="order_totals">
+            <block class="Chilliapple\Customizeproducts\Block\Sales\Order\Customizetotal" name="customfee"/>
+        </referenceBlock>
+    </body>
+</page>

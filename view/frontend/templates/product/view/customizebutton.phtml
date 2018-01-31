@@ -1,0 +1,30 @@
+<?php
+$product = $block->getProduct();
+$productOptions = $this->_helperData->getproductOptions($product->getId());
+//echo "<pre>";
+//print_r($productOptions);
+//echo "</pre>";
+$open_in_lightbox = $this->_helperData->getproductSettings('open_in_lightbox');
+$change_product_image = $this->_helperData->getproductSettings('change_product_image');
+if(count($productOptions) && $productOptions['is_customize_product']) {
+?>
+	<?php if(isset($open_in_lightbox) && $open_in_lightbox) { ?>
+		<div class="fpd-actions" id="fpd-start-customizing-button">
+			<button type="submit" title="<?php echo __('Add to Cart'); ?>" id="fpd-start-customizing-button" class="btn button fpd-blue-btn fpd-block <?php if(!$open_in_lightbox && !$change_product_image) { echo 'scrollto-custom-button'; } ?>">
+				<span><?php echo __('Customize Product'); ?></span>
+			</button>
+		</div>
+	<?php } else { ?>
+		<div class="fpd-actions">
+			<button id="fpd-start-customizing-button" type="submit" title="<?php echo __('Add to Cart'); ?>" class="fpd-blue-btn fpd-block scrollto-custom-button">
+				<span><?php echo __('Customize Product'); ?></span>
+			</button>
+		</div>
+	<?php } ?>
+	<input type="hidden" value="" name="fpd_product" />
+    <input type="hidden" value="" name="fpd_product_price" />
+    <input type="hidden" value="" name="fpd_product_thumbnail" />
+    <input type="hidden" value="" name="fpd_remove_cart_item" />
+<?php
+}
+?>

@@ -1,0 +1,687 @@
+<?php
+$product = $block->getProduct();
+$productOptions = $this->_helperData->getproductOptions($product->getId());
+if(count($productOptions) && $productOptions['is_customize_product']) {
+	$pageData = $this->_helperData->getproductpageData($this->getRequest()->getParam('icc'));
+	//echo "<pre>";
+	//print_r($pageData);
+	//echo "</pre>";
+	extract($pageData);
+	if($get_form_views === null || $get_form_views == '') {
+		$form_views = 0;
+	} else {
+		$form_views = 1;
+	}
+	
+?>
+	<input type="hidden" name="icc" id="id_custom_customization" class="id_custom_customization" value="<?php echo $icc; ?>"/>
+	<div id="fancy-product-designer-<?php echo $product->getId(); ?>" class="fpd-container <?php echo $shadow;?> <?php echo $modal_box_css; ?> fpd-clearfix fpd-show-up" style="float:none;width:<?php echo $stage_width;?>px; <?php echo $margin_styles;?>">        
+        <?php
+		if(empty($source_type) || $source_type == 'category') {
+		?>
+            <div class="fpd-category" title="<?php echo $category_html['title']; ?>">
+				<?php
+                foreach($product_html as $product_value) {
+                    foreach($product_value as $key => $pro_value) {
+				?>
+                        <div class="fpd-product" title="<?php echo isset($pro_value['title'])?$pro_value['title']:''; ?>" data-thumbnail="<?php echo isset($pro_value['view_image'])?$pro_value['view_image']:''; ?>" data-options="<?php echo isset($pro_value['view_options'])?$pro_value['view_options']:''; ?>">
+							<?php
+                            foreach($pro_value['anchors_view'] as $anchor_view) {
+                                if($anchor_view['type'] == 'image') {
+								?>
+                                    <img data-src='<?php echo isset($anchor_view['source'])?$anchor_view['source']:''; ?>' title='<?php echo isset($anchor_view['title'])?$anchor_view['title']:''; ?>' data-parameters='<?php echo isset($anchor_view['parameters'])?$anchor_view['parameters']:''; ?>' />
+								<?php
+                                } else {
+								?>
+                                    <span title='<?php echo isset($anchor_view['title'])?$anchor_view['title']:''; ?>' data-parameters='<?php echo isset($anchor_view['parameters'])?$anchor_view['parameters']:'';?>'><?php echo isset($anchor_view['source'])?$anchor_view['source']:''; ?></span>
+								<?php
+                                }
+                            }
+                        if($key != 0) {
+						?>
+                            </div>
+					<?php
+						}
+                    }
+					?>
+                    </div>
+				<?php
+                }
+				?>
+            </div>
+		<?php
+        } else {
+            foreach($product_html as $product_value) {
+                foreach($product_value as $key => $pro_value) {
+		?>
+                    <div class="fpd-product" title="<?php echo isset($pro_value['title'])?$pro_value['title']:''; ?>" data-thumbnail="<?php echo isset($pro_value['view_image'])?$pro_value['view_image']:''; ?>" data-options="<?php echo isset($pro_value['view_options'])?$pro_value['view_options']:''; ?>">
+                        <?php
+						foreach($pro_value['anchors_view'] as $anchor_view) {
+                            if($anchor_view['type'] == 'image') {
+						?>
+                                <img data-src='<?php echo isset($anchor_view['source'])?$anchor_view['source']:''; ?>' title='<?php echo isset($anchor_view['title'])?$anchor_view['title']:''; ?>' data-parameters='<?php echo isset($anchor_view['parameters'])?$anchor_view['parameters']:''; ?>' />
+							<?php
+                            } else {
+							?>
+                                <span title='<?php echo isset($anchor_view['title'])?$anchor_view['title']:''; ?>' data-parameters='<?php echo isset($anchor_view['parameters'])?$anchor_view['parameters']:''; ?>'><?php echo isset($anchor_view['source'])?$anchor_view['source']:''; ?></span>
+							<?php
+                            }
+                        }
+                    if($key != 0) {
+					?>
+                        </div>
+					<?php
+                    }
+                }
+				?>
+                    </div>
+			<?php
+            }
+        }
+        if(!empty($designs_html)) {
+		?>
+            <div class="fpd-design">
+                <div class="fpd-category" title="default">
+				<?php
+                foreach($designs_html as $des_html) {
+				?>
+                    <img data-src="<?php echo isset($des_html['origin_image'])?$des_html['origin_image']:''; ?>" title="designs" data-parameters="<?php echo isset($des_html['parameters'])?htmlentities($des_html['parameters']):''; ?>" />
+				<?php
+                }
+				?>
+                </div>
+            </div>
+		<?php
+        }
+		?>
+    </div>
+	<?php
+    if($modal_box_css == '' && !$change_product_image) {
+	?>
+        <div class="fpd-modal-buttons" style="width:<?php echo $stage_width;?>px;"><a href="#" id="fpd-modal-done" class="btn button button-small fpd-blue-btn"><span><?php echo __('Add to Cart'); ?></span></a><a href="#" id="fpd-modal-cancel" class="btn button button-small fpd-blue-btn fpd-hidden"><?php echo __('Cancel'); ?></a></div>
+	<?php
+    }
+    ?>
+    <script>
+		require([
+			'jquery'
+			], function ($) {
+				'use strict';
+				var isChangeImage = <?php echo $change_product_image; ?>;
+				var proObjId = <?php echo $product->getId(); ?>;
+				var currencySign = '<?php echo $currency_symbol; ?>';
+				var static_token = $('input[name=form_key]').val();
+				
+				var $phpUploaderInfo;
+				var $progressBar;
+				var $selector;
+				var $modalWrapper;
+				function _addThousandSep(n){
+					var rx=  /(\d+)(\d{3})/;
+					return String(n).replace(/^\d+/, function(w){
+						while(rx.test(w)){
+							w= w.replace(rx, '$1'+thousandSeparator+'$2');
+						}
+						return w;
+					});
+				};
+				function getURLParameter(sParam)
+				{
+					var sPageURL = window.location.search.substring(1);
+					var sURLVariables = sPageURL.split('&');
+					for (var i = 0; i < sURLVariables.length; i++)
+					{
+						var sParameterName = sURLVariables[i].split('=');
+						if (sParameterName[0] == sParam)
+						{
+							return sParameterName[1];
+						}
+					}
+				}        
+				var fancyProductDesigner,
+					$selector,
+					$productWrapper,
+					$cartForm,
+					productCreated = false,
+					fpdPrice = 0,
+					isReady = false,
+					$modalWrapper = null;
+					
+				var customproductPrice = <?php echo $product->getPrice(); ?>,
+					currencySymbol = "'"+currencySign+"'",
+					decimalSeparator = ".",
+					thousandSeparator = ",",
+					numberOfDecimals = 2,
+					currencyPos = "left",
+					firstViewImg = null;
+
+				var goImageAhead = false;
+				var initializa = true;
+				jQuery(document).ready(function() {
+					
+					//console.log($.mage.__('abcd ews'));
+					
+					var change_image = getURLParameter('start_customizing');
+					var change_image = 'yes';
+					if (!(typeof(change_image) != 'undefined' && change_image == 'yes'))
+					{
+						var icc_edit = getURLParameter('icc');
+						if (typeof(icc_edit) != 'undefined' && icc_edit > 0)
+						{
+							goImageAhead = true;
+						}
+					} else {
+						goImageAhead = true;
+					}
+					if (isChangeImage)
+					{
+						if (!goImageAhead) {
+							initializa = false;
+						}
+					}
+					if (initializa)
+					{
+						$selector = jQuery("#fancy-product-designer-"+proObjId);
+
+						$productWrapper = jQuery('.product-'+proObjId);
+						$cartForm = jQuery('[name="fpd_product"]:first').parents('form:first');
+
+						var buttonClass = "fpd-blue-btn",
+							productDesignerWidth = <?php echo $stage_width; ?>,
+							customizeBtn = jQuery('#fpd-start-customizing-button');
+
+						if (goImageAhead && isChangeImage) {
+
+							$modalWrapper = jQuery('.media').html('<div class="fpd-image-div-wrapper"></div>').find('.fpd-image-div-wrapper');
+														
+							jQuery('#product-addtocart-button').parent().prepend('<div class="fpd-modal-buttons buttons_bottom_block no-print"><button id="fpd-modal-done" type="submit" title="Add to Cart" class="action primary tocart btn button button-small '+buttonClass+'"><span><?php echo __('Add to Cart');?></span></button><a href="#" id="fpd-modal-cancel" class="hidden no-display btn button button-small '+buttonClass+'"><span>Cancel</span></a></div>');
+
+							$selector.clone().prependTo($modalWrapper);
+							$selector.remove();
+							$selector = jQuery('#fancy-product-designer-'+proObjId);
+
+							customizeBtn.hide();
+							jQuery('#product-addtocart-button').hide();
+
+							jQuery(document).on('click', '#fpd-modal-done', function(evt) {
+								if (jQuery(this).prop('disabled') != 'disabled')
+								{
+									jQuery('.fpd-full-loader').show();
+									jQuery(this).prop('disabled', 'disabled').addClass('disabled');
+									formAddToCart();
+								}
+								evt.preventDefault();
+							})
+							.on('click', '#fpd-modal-cancel', function(evt) {
+								evt.preventDefault();
+							});
+
+						}else if(jQuery('.fpd-lightbox-enabled').length > 0) {
+							$modalWrapper = jQuery('body').append('<div class="fpd-product-lightbox fpd-modal-overlay"><div class="fpd-modal-wrapper"><div class="fpd-modal-buttons"><a href="#" id="fpd-modal-done" class="btn button button-small '+buttonClass+'"><span>Add to Cart</span></a><a href="#" id="fpd-modal-cancel" class="btn button button-small '+buttonClass+'"><span>Cancel</span></a><a href="#" value="<?php echo __('click to open fullscreen'); ?>" class="requestfullscreen"><img src="<?php echo $this->getViewFileUrl('Chilliapple_Customizeproducts::img/Fullscreen_icon.png'); ?>" alt="<?php echo __('View Fullscreen'); ?>" /><i class="icon-fullscreen"></i></a><a href="#" value="<?php echo __('click to exit fullscreen'); ?>" style="display:none;" class="exitfullscreen"><img src="<?php echo $this->getViewFileUrl('Chilliapple_Customizeproducts::img/Fullscreen_icon.png'); ?>" alt="<?php echo __('View Fullscreen'); ?>" /><i class="icon-fullscreen"></i></a></div></div></div>').find('.fpd-modal-wrapper');
+
+							$selector.clone().prependTo($modalWrapper);
+							$selector.remove();
+							$selector = jQuery('#fancy-product-designer-'+proObjId);
+
+							jQuery(window).resize(function() {
+								$modalWrapper.css('margin-left', -($modalWrapper.outerWidth() / 2)+'px');
+							});
+
+							customizeBtn.click(function(evt) {
+
+								if(!isReady) { return false; }
+
+								jQuery('html, body').animate({ scrollTop: 0 });
+								jQuery('html,body').addClass('fpd-modal-open');
+								$modalWrapper.parent('.fpd-modal-overlay').fadeIn(300, function() {
+									jQuery('.fpd-context-dialog').removeClass('fpd-modal-hidden');
+								});
+								jQuery(window).resize();
+
+								//fp = $('.fpd-product-lightbox.fpd-modal-overlay').offset();
+								if (jQuery('.fpd-product-lightbox.fpd-modal-overlay').top > 0)
+								{
+									jQuery('.fpd-product-lightbox.fpd-modal-overlay').animate({ scrollTop: 0 });
+									setTimeout(function(){
+										var offset = jQuery('.fpd-main-container').offset();
+										jQuery('.fpd-context-dialog').css('top', offset.top);
+									}, 500);
+								} else {
+									setTimeout(function(){
+										var offset = jQuery('.fpd-main-container').offset();
+										jQuery('.fpd-context-dialog').css('top', offset.top);
+									}, 600);
+								}
+								evt.preventDefault();
+
+							});
+							$modalWrapper.on('click', '#fpd-modal-done', function(evt) {
+								if (jQuery(this).prop('disabled') != 'disabled')
+								{
+									jQuery('.fpd-full-loader').show();
+									jQuery(this).prop('disabled', 'disabled').addClass('disabled');
+									formAddToCart();
+								}
+								evt.preventDefault();
+							})
+							.on('click', '#fpd-modal-cancel', function(evt) {
+
+								fancyProductDesigner.closeDialog();
+								jQuery('html,body').removeClass('fpd-modal-open');
+								$modalWrapper.parent('.fpd-modal-overlay').fadeOut(200);
+								evt.preventDefault();
+
+							});
+						} else {
+							jQuery(document).on('click', '#fpd-modal-done', function(evt) {
+								if (jQuery(this).prop('disabled') != 'disabled')
+								{
+									jQuery('.fpd-full-loader').show();
+									jQuery(this).prop('disabled', 'disabled').addClass('disabled');
+									formAddToCart();
+								}
+								evt.preventDefault();
+							})
+							.on('click', '#fpd-modal-cancel', function(evt) {
+								evt.preventDefault();
+							});
+						}
+						if(jQuery('.fpd-share-design').length > 0) {
+							jQuery('#fpd-share-button').click(function(evt) {
+								evt.preventDefault();
+
+								var scale = $selector.width() > 800 ? Number(800 / $selector.width()).toFixed(2) : 1;
+								var data = {
+									action: 'fpd_createshareurl',
+									token : static_token,
+									image: fancyProductDesigner.getProductDataURL('png', 'transparent', scale),
+									product: JSON.stringify(fancyProductDesigner.getProduct()),
+								};
+
+								jQuery(".fpd-share-widget, .fpd-share-url").addClass('fpd-hidden');
+								jQuery('.fpd-share-process').removeClass('fpd-hidden');
+
+								jQuery.post("<?php echo $admin_ajax; ?>", data, function(response) {
+
+									if(response.share_id !== undefined) {
+
+										var pattern = new RegExp('(share_id=).*?(&|$)'),
+											shareUrl = window.location.href;
+
+										if(shareUrl.search(pattern) >= 0){
+											shareUrl = shareUrl.replace(pattern,'$1' + response.share_id + '$2');
+										}
+										else{
+											shareUrl = shareUrl + (shareUrl.indexOf('?')>0 ? '&' : '?') + 'share_id=' + response.share_id;
+										}
+
+										jQuery(".fpd-share-widget").empty().jsSocials({
+											url: shareUrl,
+											shares: ["facebook","twitter"],
+											showLabel: false,
+											text: "<?php __('Check out my design!'); ?>"
+										}).removeClass('fpd-hidden');
+									}
+
+									jQuery('.fpd-share-process').addClass('fpd-hidden');
+									jQuery('.fpd-share-url').attr('href', shareUrl).text(shareUrl).removeClass('fpd-hidden');
+
+								}, 'json');
+							});
+						}
+
+						var customImagesParams = jQuery.extend(<?php echo html_entity_decode($getImageparams); ?>, <?php echo html_entity_decode($getCustomImageparams); ?>);
+
+						var socialPhotoAjaxSettingsOpt = {                
+							url: "<?php echo $admin_ajax; ?>",
+							data: {
+								action: 'fpd_uploadsocialphoto',
+								token : static_token
+							}
+						};
+						//call fancy product designer plugin
+						setTimeout(function(){
+							
+						console.log("typeof $selector.fancyProductDesigner");
+						console.log( typeof $selector.fancyProductDesigner );
+						fancyProductDesigner = $selector.fancyProductDesigner({
+							width: productDesignerWidth,
+							stageHeight: <?php echo $stage_height; ?>,
+							imageDownloadable: <?php echo $this->_helperData->getmainSettings('download_product_image'); ?>,
+							saveAsPdf: <?php echo $this->_helperData->getmainSettings('pdf_button'); ?>,
+							printable: <?php echo $this->_helperData->getmainSettings('print'); ?>,
+							allowProductSaving: <?php echo $this->_helperData->getmainSettings('allow_product_saving'); ?>,
+							fonts: ["<?php echo html_entity_decode($jsfonts); ?>"],
+							templatesDirectory: "<?php echo $template_dir; ?>",
+							phpDirectory: "<?php echo $phpDirectory; ?>",
+							facebookAppId: "<?php echo $this->_helperData->getmainSettings('facebook_app_id'); ?>",
+							instagramClientId: "<?php echo $this->_helperData->getmainSettings('instagram_client_id'); ?>",
+							instagramRedirectUri: "<?php echo $instagram_redirect_uri; ?>",
+							patterns: [<?php echo html_entity_decode($patterns); ?>],
+							viewSelectionPosition: "<?php echo $this->_helperData->getproductSettings('view_selection_position'); ?>",
+							viewSelectionFloated: <?php echo $view_selection_floated; ?>,
+							zoomStep: <?php echo $this->_helperData->getmainSettings('zoom_step'); ?>,
+							maxZoom: <?php echo $this->_helperData->getmainSettings('max_zoom'); ?>,
+							tooltips: <?php echo $this->_helperData->getmainSettings('tooltips'); ?>,
+							hexNames: {},
+							selectedColor:  "<?php echo $this->_helperData->getmainSettings('selected_color'); ?>",
+							boundingBoxColor:  "<?php echo $this->_helperData->getmainSettings('bounding_box_color'); ?>",
+							outOfBoundaryColor:  "<?php echo $this->_helperData->getmainSettings('out_of_boundary_color'); ?>",
+							paddingControl:  <?php echo $this->_helperData->getmainSettings('padding_controls'); ?>,
+							replaceInitialElements: <?php echo $replaceInitialElements; ?>,
+							lazyLoad: "1",
+							dialogBoxPositioning: "<?php echo $dialog_box_positioning; ?>",
+							socialPhotoAjaxSettings: socialPhotoAjaxSettingsOpt,
+							elementParameters: {
+								originX: "<?php echo $this->_helperData->getmainSettings('common_parameter_originX'); ?>",
+								originY: "<?php echo $this->_helperData->getmainSettings('common_parameter_originY'); ?>"
+							},
+							imageParameters: {
+								colorPrices: '{}'
+							},
+							textParameters: {
+								font: "<?php echo $this->_helperData->getmainSettings('font'); ?>",
+								colorPrices: '{}'
+							},
+							customImageParameters: customImagesParams,
+							customTextParameters: <?php echo html_entity_decode($getCustomTextparams); ?>,
+							labels: '<?php echo html_entity_decode($labels); ?>',
+							customAdds: {
+								uploads: <?php echo $hide_custom_image_upload; ?>,
+								texts: <?php echo $hide_custom_text; ?>,
+								facebook: <?php echo $hide_facebook_tab; ?>,
+								instagram: <?php echo $hide_instagram_tab; ?>
+							}
+						}).data('fancy-product-designer');}, 5000);
+
+						console.log("typeof $selector.fancyProductDesigner");
+						console.log( typeof $selector.fancyProductDesigner );
+						
+						$selector.on('ready', function() {
+							if(jQuery('.fpd-lightbox-enabled').size() > 0) {
+								jQuery('.fpd-context-dialog').addClass('fpd-modal-hidden');
+							}
+
+							if(<?php echo $form_views; ?>) {
+								fancyProductDesigner.loadProduct(<?php echo html_entity_decode($get_form_views); ?>);
+							}
+
+							var $imageInput = jQuery('body').find('.fpd-input-image');
+							jQuery('body').find('.fpd-upload-form').off('change').change(function() {
+								jQuery('body').find('.fpd-upload-form').ajaxSubmit({
+									url: "<?php echo $admin_ajax; ?>",
+									dataType: 'json',
+									data: {
+										action: 'fpduploadimage',
+										product_id: proObjId,
+										token : static_token
+									},
+									type: 'post',
+									beforeSubmit: function(arr, $form, options) {
+
+										$phpUploaderInfo.addClass('fpd-show-up')
+										.children('p:first').text("<?php echo __('Uploading');?>"+": "+arr[0].value.name);
+										$progressBar.children('.fpd-progress-bar-move').css('width', 0);
+
+									},
+									success: function(responseText, statusText) {
+										
+										console.log(responseText);
+
+										if(responseText.code == 200) {
+											//successfully uploaded
+											fancyProductDesigner.addCustomImage(responseText.url, responseText.filename);
+										}
+										else {
+											//failed
+											fancyProductDesigner.showModal(responseText.message);
+										}
+
+										$imageInput.val('');
+										$phpUploaderInfo.removeClass('fpd-show-up');
+
+									},
+									error: function() {
+
+										$imageInput.val('');
+										$phpUploaderInfo.removeClass('fpd-show-up');
+										fancyProductDesigner.showModal("<?php echo __('Server error: Image could not be uploaded, please try again!'); ?>");
+
+									},
+									uploadProgress: function(evt, pos, total, percentComplete) {
+										$progressBar.children('.fpd-progress-bar-move').css('width', percentComplete+'%');
+									}
+
+								});
+							});
+							jQuery('body').append('<div class="fpd-php-uploader-info fpd-snackbar fpd-shadow-1"><p></p><div class="fpd-upload-progess-bar"><div class="fpd-progress-bar-bg"></div><div class="fpd-progress-bar-move"></div></div></div>');
+							
+							$phpUploaderInfo = jQuery('body').children('.fpd-php-uploader-info');
+
+							$progressBar = $phpUploaderInfo.children('.fpd-upload-progess-bar');
+							
+							jQuery('#product-addtocart-button').hide();
+							//hide loading icon in customize btn
+							customizeBtn.removeClass('fpd-disabled').text(customizeBtn.attr('title')).removeAttr('title');
+
+							isReady = true;
+						});
+						
+						jQuery('#fpd-extern-download-pdf').click(function(evt) {
+							evt.preventDefault();
+							if(productCreated) {
+								$selector.find('.fpd-save-pdf').mouseup();
+							}
+							else {
+								fancyProductDesigner.showModal("<?php echo __('The product is not created yet, try again when the product has been fully loaded into the designer'); ?>");
+							}
+						});
+						
+						$selector.on('productCreate', function() {
+							productCreated = true;
+							fpdPrice = fancyProductDesigner.getPrice();
+							_setTotalPrice();
+							if(<?php echo $form_views; ?>) {
+								_setProductImage();
+							}
+						});
+						
+						//calculate initial price
+						$selector.on('productCreate', function() {
+							productCreated = true;
+							fpdPrice = fancyProductDesigner.getPrice();
+							_setTotalPrice();
+							if(<?php echo $form_views; ?>) {
+								_setProductImage();
+							}
+						});
+						
+						//listen when price changes
+						$selector.on('priceChange', function(evt, sp, tp) {
+							fpdPrice = tp;
+							_setTotalPrice();
+						});
+						
+						//set product image
+						if($modalWrapper !== null) {
+							$modalWrapper.on('click', '#fpd-modal-done', function(evt) {
+								_setProductImage();
+								evt.preventDefault();
+							});
+						}
+						
+						jQuery('.fpd-product-lightbox .requestfullscreen').click(function() {
+							jQuery('body').fullscreen();
+							return false;
+						});
+
+						jQuery('.fpd-product-lightbox .exitfullscreen').click(function() {
+							jQuery.fullscreen.exit();
+							return false;
+						});
+
+						jQuery(document).bind('fscreenchange', function(e, state, elem) {
+							if (jQuery.fullscreen.isFullScreen()) {
+								jQuery('.fpd-product-lightbox .requestfullscreen').hide();
+								jQuery('.fpd-product-lightbox .exitfullscreen').show();
+								jQuery('body .fpd-product-lightbox').css('background', '#000');
+							} else {
+								jQuery('.fpd-product-lightbox .requestfullscreen').show();
+								jQuery('.fpd-product-lightbox .exitfullscreen').hide();
+								jQuery('body .fpd-product-lightbox').css('background', 'rgba(0,0,0,.5)');
+							}
+						});
+					}
+				});
+				function encodeURL(str){
+					return str.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+				}
+				function dataURItoBlob(dataURI) {
+					// convert base64/URLEncoded data component to raw binary data held in a string
+					var byteString;
+					if (dataURI.split(',')[0].indexOf('base64') >= 0)
+						byteString = atob(dataURI.split(',')[1]);
+					else
+						byteString = unescape(dataURI.split(',')[1]);
+					// separate out the mime component
+					var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+					// write the bytes of the string to a typed array
+					var ia = new Uint8Array(byteString.length);
+					for (var i = 0; i < byteString.length; i++) {
+						ia[i] = byteString.charCodeAt(i);
+					}
+					return new Blob([ia], {type:mimeString});
+				}
+				function formAddToCart(){
+					if(!productCreated) { return false; }
+
+					var product = fancyProductDesigner.getProduct();
+
+					if(product != false) {
+
+						$cartForm.find('input[name="fpd_product"]').val(JSON.stringify(product));
+
+						var fullCustomizeImage = fancyProductDesigner.getProductDataURL();
+						var frontThumbnail = fancyProductDesigner.getViewsDataURL('png', 'transparent', 0.3)[0];
+
+						$cartForm.find('input[name="fpd_product_thumbnail"]').val(frontThumbnail);
+						var pricefinal = _setTotalPrice();
+						//alert(pricefinal);
+						var id_com = jQuery('input[name=selected_configurable_option]').val() ? jQuery('input[name=selected_configurable_option]') : 0;
+						var paramsend = '&ipa=' + id_com;
+						paramsend += '&icc=' + jQuery('#id_custom_customization').val();
+						paramsend += '&old_price=' + customproductPrice;
+
+						var file = dataURItoBlob(fullCustomizeImage);
+
+						var data_ajax = new FormData();
+						
+						data_ajax.append('price', pricefinal);
+						data_ajax.append('fpd_product', JSON.stringify(product));
+						data_ajax.append('id_product', proObjId);
+						data_ajax.append('ipa', id_com);
+						data_ajax.append('token', static_token);                
+						data_ajax.append('icc', jQuery('#id_custom_customization').val());
+						data_ajax.append('old_price', customproductPrice);
+						data_ajax.append('thumbimage[]', file, 'customproduct.png');
+						jQuery.ajax({
+							type: 'POST',
+							data: data_ajax,
+							cache: false,
+							processData: false,
+							contentType: false,
+							dataType : "json",
+							url: "<?php echo $base_uri; ?>customizeproducts/designer/savecustomdata/",
+							success: function(jsonData)
+							{
+								if (!jsonData.hasError)
+								{
+									jQuery('.fpd-reset-product').click();
+									jQuery('#fpd-modal-cancel').click();
+									jQuery('#id_custom_customization').val('');
+									if (!jsonData.update)
+									{
+										jQuery('#product-addtocart-button').click();
+									} else {
+										jQuery('.showcart').click();
+									}
+								}
+								jQuery('.fpd-full-loader').hide();
+								jQuery('#fpd-modal-done').removeProp('disabled').removeClass('disabled');                        
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown)
+							{
+								jQuery('.fpd-full-loader').hide();
+								jQuery('#fpd-modal-done').removeProp('disabled').removeClass('disabled');
+							}
+						});
+						return false;
+					}
+				}
+
+				function _setTotalPrice() {
+					var totalPrice = parseFloat(customproductPrice) + parseFloat(fpdPrice),
+					htmlPrice;
+
+					totalPrice = totalPrice.toFixed(numberOfDecimals);
+					htmlPrice = totalPrice.toString().replace('.', decimalSeparator);
+					if(thousandSeparator.length > 0) {
+						htmlPrice = _addThousandSep(htmlPrice);
+					}
+
+					if(currencyPos == 'right') {
+						htmlPrice = htmlPrice + currencySymbol;
+					}
+					else if(currencyPos == 'right_space') {
+						htmlPrice = htmlPrice + ' ' + currencySymbol;
+					}
+					else if(currencyPos == 'left_space') {
+						htmlPrice = currencySymbol + ' ' + htmlPrice;
+					}
+					else {
+						htmlPrice = currencySymbol + htmlPrice;
+					}
+					$cartForm.find('input[name="fpd_product_price"]').val(fpdPrice);
+					return fpdPrice;
+				};
+				
+				function _setProductImage() {
+					if(jQuery('.fpd-lightbox-enabled').size() > 0) {
+						firstViewImg = fancyProductDesigner.getViewsDataURL('png', 'transparent')[0];
+						$productWrapper.find('div.media img:eq(0)').attr('src', firstViewImg).parent('a').attr('href', firstViewImg);
+					}
+				};
+			});
+    </script>
+	<style type="text/css">
+
+        .fpd-primary-bg-color {
+            background-color: <?php echo $this->_helperData->getmainSettings('designer_primary_color'); ?>;
+        }
+
+        .fpd-primary-text-color,
+        .fpd-primary-text-color:hover {
+            color: <?php echo $this->_helperData->getmainSettings('designer_primary_text_color'); ?>;
+        }
+
+        .fpd-secondary-bg-color {
+            background-color: <?php echo $this->_helperData->getmainSettings('designer_secondary_color'); ?> !important;
+        }
+
+        .fpd-secondary-text-color,
+        .fpd-secondary-text-color:hover {
+            color:  <?php echo $this->_helperData->getmainSettings('designer_secondary_text_color'); ?> !important;
+        }
+
+        .fpd-tabs > .fpd-btn.fpd-checked {
+            border-color: <?php echo $this->_helperData->getmainSettings('designer_secondary_color'); ?>;
+        }
+
+        .fpd-checked i {
+            color: <?php echo $this->_helperData->getmainSettings('designer_secondary_color'); ?> !important;
+        }
+
+	</style>
+<?php
+}
+?>

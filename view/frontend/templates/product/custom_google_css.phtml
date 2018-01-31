@@ -1,0 +1,24 @@
+<?php /*<link rel="stylesheet" href="Chilliapple_Customizeproducts::css/jssocials/jssocials-theme-flat.css" type="text/css" media="all" />
+<link rel="stylesheet" href="Chilliapple_Customizeproducts::css/jssocials/jssocials.css" type="text/css" media="all" />
+<link rel="stylesheet" href="Chilliapple_Customizeproducts::css/jquery-ui.css" type="text/css" media="all" />
+<link rel="stylesheet" href="Chilliapple_Customizeproducts::css/jquery.customProductDesigner.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="Chilliapple_Customizeproducts::css/jquery.customProductDesigner-fonts.css" type="text/css" media="all" /> */ ?>
+<?php
+$product = $block->getProduct();
+$productOptions = $this->_helperData->getproductOptions($product->getId());
+if(count($productOptions) && $productOptions['is_customize_product']) { ?>
+	<?php if($block->getenabledFonts() != '') { ?>
+		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=<?php echo $block->getenabledFonts(); ?>" type="text/css" media="all" />
+	<?php } ?>
+	<script>
+	//require (['cust_slider'], function() {return;});
+	require (['cust_fabric'], function() {
+		console.log("callback of cust_fabric");
+		require (['cust_pdesign', 'cust_slider', 'cust_jssocial', 'cust_front', 'cust_form', 'cust_fullscreen'], function() {
+			console.log("callback of all others");
+			return;
+		});
+	});
+	
+	</script>
+<?php } ?>

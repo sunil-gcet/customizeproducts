@@ -1,0 +1,19 @@
+<?php
+$product = $block->getProduct();
+$productOptions = $this->_helperData->getproductOptions($product->getId());
+if(count($productOptions) && $productOptions['is_customize_product'] && $this->_helperData->getmainSettings('display_customizable')) { ?>
+	<a class="sale-box no-print customize-box" href="javascript:void(0)">
+		<span class="customize-label"><?php echo __('Customize'); ?></span>
+	</a>
+<?php } ?>
+<script>
+require([
+'jquery', // jquery Library
+'jquery/ui', // Jquery UI Library
+'mage/translate' // Magento text translate (Validation message translte as per language)
+], function($){ 
+    $(window).load(function() {
+        //alert($.mage.__('js test'));
+    });
+});
+</script>

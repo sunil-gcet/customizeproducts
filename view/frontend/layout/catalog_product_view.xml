@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <css src="Chilliapple_Customizeproducts::css/jssocials/jssocials-theme-flat.css"/>
+        <css src="Chilliapple_Customizeproducts::css/jssocials/jssocials.css"/>
+        <!-- <css src="Chilliapple_Customizeproducts::css/jquery-ui.css"/> -->
+        <css src="Chilliapple_Customizeproducts::css/jquery.customProductDesigner.min.css"/>
+        <css src="Chilliapple_Customizeproducts::css/jquery.customProductDesigner-fonts.css"/>
+        <css src="Chilliapple_Customizeproducts::css/customize-product.css"/>
+		<css src="Chilliapple_Customizeproducts::css/styles.css"/>
+		<!-- <link src="Chilliapple_Customizeproducts::js/core.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/widget.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/mouse.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/draggable.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/resizable.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/sortable.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/slider.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/jssocials/jssocials.min.js"/>
+		<link src="Chilliapple_Customizeproducts::js/front.js"/>
+		<link src="Chilliapple_Customizeproducts::js/fabric.js"/>
+		<link src="Chilliapple_Customizeproducts::js/jquery.form.js"/>
+		<link src="Chilliapple_Customizeproducts::js/jquery.customProductDesigner.js"/>
+		<link src="Chilliapple_Customizeproducts::js/jquery.fullscreen.min.js"/> -->
+    </head>
+	<body>
+        <referenceContainer name="head.additional">
+            <block class="Chilliapple\Customizeproducts\Block\Product\View\Customizepage" name="block_product_view" template="Chilliapple_Customizeproducts::product/custom_google_css.phtml" />
+        </referenceContainer>
+		<referenceContainer name="product.info.form.content">
+			<block class="Chilliapple\Customizeproducts\Block\Product\View\Customizebutton" name="product.view.customizebutton"
+				template="Chilliapple_Customizeproducts::product/view/customizebutton.phtml" after="-">
+			</block>
+		</referenceContainer>
+		<referenceContainer name="content">
+			<block class="Chilliapple\Customizeproducts\Block\Product\View\Customizepage" name="product.view.customizepage"
+				template="Chilliapple_Customizeproducts::product/view/customizepage.phtml" after="-">
+			</block>
+		</referenceContainer>
+		<referenceContainer name="product.info.media">
+			<block class="Chilliapple\Customizeproducts\Block\Product\View\Customizebutton" name="product.view.customizepagemedia"
+				template="Chilliapple_Customizeproducts::product/view/customizepagemedia.phtml" after="-">
+			</block>
+		</referenceContainer>
+    </body>
+</page>

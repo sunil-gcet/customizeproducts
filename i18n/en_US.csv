@@ -1,0 +1,475 @@
+"Customize Designs","Customize Designs"
+"Add New Design","Add New Design"
+"Save Design","Save Design"
+"Delete Design","Delete Design"
+"Save and Continue Edit","Save and Continue Edit"
+"Edit Design '%1'","Edit Design '%1'"
+"New Design","New Design"
+"Customize Design","Customize Design"
+"Design Image","Design Image"
+"Enable Options","Enable Options"
+No,No
+Yes,Yes
+X-Position,X-Position
+Y-Position,Y-Position
+Z-Position,Z-Position
+Scale,Scale
+Color(s),Color(s)
+Price,Price
+"Auto Center","Auto Center"
+Draggable,Draggable
+Rotatable,Rotatable
+Resizable,Resizable
+"General Information","General Information"
+ID,ID
+price,price
+Delete,Delete
+"Are you sure?","Are you sure?"
+"Change Image Source","Change Image Source"
+"Customize Products","Customize Products"
+"Add New Product","Add New Product"
+"Save Product","Save Product"
+"Delete Product","Delete Product"
+"Edit Product '%1'","Edit Product '%1'"
+"New Product","New Product"
+"Customize Product","Customize Product"
+Title,Title
+"Select Categories","Select Categories"
+"Customize Product Width","Customize Product Width"
+"Customize Product Height","Customize Product Height"
+"Customize Product Views","Customize Product Views"
+"Add New View","Add New View"
+"Save View","Save View"
+"Delete View","Delete View"
+"Edit View '%1'","Edit View '%1'"
+"New View","New View"
+"View Title","View Title"
+"Select Parent Product","Select Parent Product"
+"Custom View Image","Custom View Image"
+"Custom Image Price","Custom Image Price"
+"Custom Text Price","Custom Text Price"
+"Disable Image Upload","Disable Image Upload"
+"Disable Custom Text","Disable Custom Text"
+"Disable Facebook","Disable Facebook"
+"Disable Instagram","Disable Instagram"
+"Disable Designs","Disable Designs"
+"View Image","View Image"
+"Product Name","Product Name"
+Settings,Settings
+"Add New Entry","Add New Entry"
+"Save Settings","Save Settings"
+"Edit Settings '%1'","Edit Settings '%1'"
+"New Settings","New Settings"
+"Image Options","Image Options"
+"-1 means that the element will be added at the top. Any value higher than that will add the element to that z-position.","-1 means that the element will be added at the top. Any value higher than that will add the element to that z-position."
+Colors,Colors
+"Enter hex color(s) separated by comma.","Enter hex color(s) separated by comma."
+"Enter the additional price for a design element. Use always a dot as decimal separator!","Enter the additional price for a design element. Use always a dot as decimal separator!"
+Auto-Center,Auto-Center
+Z-Changeable,Z-Changeable
+Replace,Replace
+"Elements with the same replace name will replace each other.","Elements with the same replace name will replace each other."
+Auto-Select,Auto-Select
+"Stay On Top","Stay On Top"
+"Use another element as bounding box?","Use another element as bounding box?"
+"Bounding Box Target","Bounding Box Target"
+"Bounding Box X-Position","Bounding Box X-Position"
+"Bounding Box Y-Position","Bounding Box Y-Position"
+"Bounding Box Width","Bounding Box Width"
+"Bounding Box Height","Bounding Box Height"
+"Bounding Box Clipping","Bounding Box Clipping"
+Filters,Filters
+"Custom Image Options","Custom Image Options"
+"Minimum Width","Minimum Width"
+"The minimum image width for uploaded designs from the customers.","The minimum image width for uploaded designs from the customers."
+"Minimum Height","Minimum Height"
+"The minimum image height for uploaded designs from the customers.","The minimum image height for uploaded designs from the customers."
+"Maximum Width","Maximum Width"
+"The maximum image width for uploaded designs from the customers.","The maximum image width for uploaded designs from the customers."
+"Maximum Height","Maximum Height"
+"The maximum image height for uploaded designs from the customers.","The maximum image height for uploaded designs from the customers."
+"Resize To Width","Resize To Width"
+"Resize the uploaded image to this width, when width is larger than height.","Resize the uploaded image to this width, when width is larger than height."
+"Resize To Height","Resize To Height"
+"Resize the uploaded image to this height, when height is larger than width.","Resize the uploaded image to this height, when height is larger than width."
+"Custom Text Options","Custom Text Options"
+"The x-position of the custom text element.","The x-position of the custom text element."
+"The y-position of the custom text element.","The y-position of the custom text element."
+"Enter the additional price for a text element. Always use a dot as decimal separator!","Enter the additional price for a text element. Always use a dot as decimal separator!"
+Patternable,Patternable
+"Let the customer choose a pattern?","Let the customer choose a pattern?"
+Curvable,Curvable
+"Let the customer make the text curved?","Let the customer make the text curved?"
+"Curve Spacing","Curve Spacing"
+"Curve Radius","Curve Radius"
+"Curve Reverse","Curve Reverse"
+"Enter the title of another element that should be used as bounding box for design elements.","Enter the title of another element that should be used as bounding box for design elements."
+"Default Text Size","Default Text Size"
+"The default text size for all text elements.","The default text size for all text elements."
+"Default Font","Default Font"
+"Enter the default font. If you leave it empty, the first font from the fonts dropdown will be used.","Enter the default font. If you leave it empty, the first font from the fonts dropdown will be used."
+"Maximum Characters","Maximum Characters"
+"You can limit the number of characters. 0 means unlimited characters.","You can limit the number of characters. 0 means unlimited characters."
+Alignment,Alignment
+"Common Options","Common Options"
+"Origin-X Point","Origin-X Point"
+"Origin-Y Point","Origin-Y Point"
+"Default Element Settings","Default Element Settings"
+"Fonts Settings","Fonts Settings"
+"Common Fonts","Common Fonts"
+"Enter here common fonts separated by comma, which are installed on all system by default, e.g. Arial.","Enter here common fonts separated by comma, which are installed on all system by default, e.g. Arial."
+"Google Webfonts","Google Webfonts"
+"Choose fonts from Google Webfonts. Using more than 3 fonts will cause your site to load more slowly.","Choose fonts from Google Webfonts. Using more than 3 fonts will cause your site to load more slowly."
+"Fonts Directory","Fonts Directory"
+"You can add your own fonts to the fonts directory of the plugin, these font files need to be .woff files.","You can add your own fonts to the fonts directory of the plugin, these font files need to be .woff files."
+Fonts,Fonts
+"Layout & Skin","Layout & Skin"
+"Product Designer Width","Product Designer Width"
+"Product Designer Height","Product Designer Height"
+"Product Designer Frame Shadow","Product Designer Frame Shadow"
+"Dialog Box Positioning","Dialog Box Positioning"
+"View Selection Positioning","View Selection Positioning"
+"Product Designer Margin Top","Product Designer Margin Top"
+"Product Designer Margin Right","Product Designer Margin Right"
+"Product Designer Margin Bottom","Product Designer Margin Bottom"
+"Product Designer Margin Left","Product Designer Margin Left"
+"Display product is customizable","Display product is customizable"
+"Designer Primary Color","Designer Primary Color"
+"Designer Secondary Color","Designer Secondary Color"
+"Designer Text Primary Color","Designer Text Primary Color"
+"Designer Text Secondary Color","Designer Text Secondary Color"
+"Element Selected Color","Element Selected Color"
+"Bounding Box Color","Bounding Box Color"
+"Out of Bounding Box Color","Out of Bounding Box Color"
+"User Interface","User Interface"
+"Custom Image Upload","Custom Image Upload"
+"Let customers upload their own images to products?","Let customers upload their own images to products?"
+"Facebook Upload","Facebook Upload"
+"Let customers upload image from facebook?","Let customers upload image from facebook?"
+"Instagram Upload","Instagram Upload"
+"Let customers upload image from instagram?","Let customers upload image from instagram?"
+"Custom Text","Custom Text"
+"Let customers add their own text elements to products?","Let customers add their own text elements to products?"
+"Download Product Image","Download Product Image"
+"Let customers download a product image?","Let customers download a product image?"
+"Save as PDF","Save as PDF"
+"Let customers save the product as PDF?","Let customers save the product as PDF?"
+Print,Print
+"Let customers print the product?","Let customers print the product?"
+"Allow Product Saving","Allow Product Saving"
+"Let customers save their customized products?","Let customers save their customized products?"
+Tooltips,Tooltips
+"Use tooltips in the product designer?","Use tooltips in the product designer?"
+Miscellaneous,Miscellaneous
+"Maximum Image Size (MB)","Maximum Image Size (MB)"
+"The maximum image size in Megabytes, when using the PHP uploader.","The maximum image size in Megabytes, when using the PHP uploader."
+"Minimum Allowed DPI","Minimum Allowed DPI"
+"The minimum allowed DPI, when using the PHP uploader.","The minimum allowed DPI, when using the PHP uploader."
+"Facebook App-ID","Facebook App-ID"
+"To allow users to add photos from facebook, you have to enter a Facebook App-Id.","To allow users to add photos from facebook, you have to enter a Facebook App-Id."
+"Instagram Client ID","Instagram Client ID"
+"To allow users to add photos from instagram, you have to enter a Instagram Client ID.","To allow users to add photos from instagram, you have to enter a Instagram Client ID."
+"Google Api key","Google Api key"
+"To fetch all the fonts from google.","To fetch all the fonts from google."
+"Zoom Factor","Zoom Factor"
+"The step for zooming in and out.","The step for zooming in and out."
+"Maximum Zoom","Maximum Zoom"
+"The maximum zoom when zooming in. Set it to ""1"" to disable the zoom feature.","The maximum zoom when zooming in. Set it to ""1"" to disable the zoom feature."
+"Padding Controls","Padding Controls"
+"The padding of the controls when an element is selected in the product stage.","The padding of the controls when an element is selected in the product stage."
+"Replace Initial Elements","Replace Initial Elements"
+"When a product designer contains multiple Customize Products and the customer adds custom elements to it and chooses another Customize Product, only the initial elements will be replaced.","When a product designer contains multiple Customize Products and the customer adds custom elements to it and chooses another Customize Product, only the initial elements will be replaced."
+"Open in lightbox","Open in lightbox"
+General,General
+"Default Element Options","Default Element Options"
+id,id
+"Add New Description","Add New Description"
+"Product Categories","Product Categories"
+"Add New Category","Add New Category"
+"Save Category","Save Category"
+"Delete Category","Delete Category"
+"Edit Category '%1'","Edit Category '%1'"
+"New Category","New Category"
+"Product Category","Product Category"
+"Product category","Product category"
+"Delete successfully !","Delete successfully !"
+"This row no longer exists.","This row no longer exists."
+"Please select product(s).","Please select product(s)."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"The Design Has been Saved.","The Design Has been Saved."
+"Something went wrong while saving the design.","Something went wrong while saving the design."
+"The Product view has been Saved.","The Product view has been Saved."
+"Something went wrong while saving the view.","Something went wrong while saving the view."
+"The customize product has been saved.","The customize product has been saved."
+"Something went wrong while saving the banner.","Something went wrong while saving the banner."
+Customsettings,Customsettings
+"The Settings Has been Saved.","The Settings Has been Saved."
+"Something went wrong while saving the settings.","Something went wrong while saving the settings."
+"Invalid form key. Please refresh the page and try again!","Invalid form key. Please refresh the page and try again!"
+"An error occurred during the process.","An error occurred during the process."
+"This file is not an image!","This file is not an image!"
+"An error occurred during the image upload process.","An error occurred during the image upload process."
+"The Category Has been Saved.","The Category Has been Saved."
+"You have successfully deleted the customization.","You have successfully deleted the customization."
+"We can\'t remove the customization item.","We can\'t remove the customization item."
+"The uploaded file exceeds the upload_max_filesize directive in php.ini","The uploaded file exceeds the upload_max_filesize directive in php.ini"
+"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form","The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form"
+"The uploaded file was only partially uploaded","The uploaded file was only partially uploaded"
+"No file was uploaded","No file was uploaded"
+"Missing a temporary folder","Missing a temporary folder"
+"Failed to write file to disk","Failed to write file to disk"
+"File upload stopped by extension","File upload stopped by extension"
+"Unknown upload error","Unknown upload error"
+"Uploaded image is too big! Maximum image size is 2 MB!","Uploaded image is too big! Maximum image size is 2 MB!"
+"The DPI of the uploaded image is too small! Minimum allowed DPI is ' . . '.","The DPI of the uploaded image is too small! Minimum allowed DPI is ' . . '."
+"PHP Issue - copy image failed","PHP Issue - copy image failed"
+"Product successfully created!","Product successfully created!"
+"Product could not be created. Please try again!","Product could not be created. Please try again!"
+"Shadow 1","Shadow 1"
+"Shadow 2","Shadow 2"
+"Shadow 3","Shadow 3"
+"Shadow 4","Shadow 4"
+"Shadow 5","Shadow 5"
+"Shadow 6","Shadow 6"
+"Shadow 7","Shadow 7"
+"Shadow 8","Shadow 8"
+"No Shadow","No Shadow"
+Dynamic,Dynamic
+"Fixed Left","Fixed Left"
+"Fixed Right","Fixed Right"
+"Top-Right in Product Stage","Top-Right in Product Stage"
+"Top-Left in Product Stage","Top-Left in Product Stage"
+"Bottom-Right in Product Stage","Bottom-Right in Product Stage"
+"Bottom-Left in Product Stage","Bottom-Left in Product Stage"
+"Under the Product Stage","Under the Product Stage"
+Grayscale,Grayscale
+Sepia,Sepia
+"Sepia 2","Sepia 2"
+Left,Left
+Center,Center
+Right,Right
+"Manage Layers","Manage Layers"
+Add,Add
+"Change Products","Change Products"
+Actions,Actions
+"Download PDF","Download PDF"
+"Download Image","Download Image"
+Save,Save
+Load,Load
+Undo,Undo
+Redo,Redo
+"Reset Product","Reset Product"
+Zoom,Zoom
+Pan,Pan
+"Add your own Image","Add your own Image"
+"Add your own text","Add your own text"
+"Enter your text","Enter your text"
+"Add photo from facebook","Add photo from facebook"
+"Add photo from instagram","Add photo from instagram"
+"Choose from Designs","Choose from Designs"
+"Edit Element","Edit Element"
+"Fill Options","Fill Options"
+Color,Color
+Patterns,Patterns
+Opacity,Opacity
+Filter,Filter
+"Text Options","Text Options"
+"Change Text","Change Text"
+Typeface,Typeface
+"Line Height","Line Height"
+"Align Left","Align Left"
+"Align Center","Align Center"
+"Align Right","Align Right"
+Styling,Styling
+Bold,Bold
+Italic,Italic
+Underline,Underline
+"Curved Text","Curved Text"
+Spacing,Spacing
+Radius,Radius
+Reverse,Reverse
+Transform,Transform
+Angle,Angle
+"Move Up","Move Up"
+"Move Down","Move Down"
+"Center Horizontal","Center Horizontal"
+"Center Vertical","Center Vertical"
+"Flip Horizontal","Flip Horizontal"
+"Flip Vertical","Flip Vertical"
+"Reset Element","Reset Element"
+"Select an album","Select an album"
+"My Feed","My Feed"
+"My Recent Images","My Recent Images"
+"Product Saved!","Product Saved!"
+Lock,Lock
+Unlock,Unlock
+Remove,Remove
+"Move it in his containment!","Move it in his containment!"
+"Initializing product designer","Initializing product designer"
+"Your uploaded images","Your uploaded images"
+"Sorry! The image you have uploaded does not meet the size requirements. Minimum Width: 10 pixels, Minimum Height: 10 pixels, Maximum Width: 199 pixels, Maximum Height: 199 pixels","Sorry! The image you have uploaded does not meet the size requirements. Minimum Width: 10 pixels, Minimum Height: 10 pixels, Maximum Width: 199 pixels, Maximum Height: 199 pixels"
+"OK, got it!","OK, got it!"
+"Requested custom description is not found","Requested custom description is not found"
+"Add View","Add View"
+"Edit Title","Edit Title"
+"Edit Options","Edit Options"
+Edit,Edit
+"Customization Fee","Customization Fee"
+"Couldn't save changes on custom description","Couldn't save changes on custom description"
+"Allow Customization","Allow Customization"
+"Source Type","Source Type"
+Category,Category
+Product,Product
+"Customized Products","Customized Products"
+"Customized Categories","Customized Categories"
+"Individual Settings","Individual Settings"
+"Change Product Image","Change Product Image"
+"Use Option From Main Settings","Use Option From Main Settings"
+"View Selection Position","View Selection Position"
+"View Selection Items","View Selection Items"
+"Product Stage Width","Product Stage Width"
+"Product Stage Height","Product Stage Height"
+"Available Fonts","Available Fonts"
+"Common Image","Common Image"
+"Bounding Box","Bounding Box"
+"Custom Bounding Box","Custom Bounding Box"
+"Use another element as bounding box","Use another element as bounding box"
+"Hide Filters","Hide Filters"
+"Custom Image","Custom Image"
+"There are no customizable products at the moment!","There are no customizable products at the moment!"
+Views,Views
+"Select the view of your Customize Product","Select the view of your Customize Product"
+Layers,Layers
+"Add Image","Add Image"
+"Add Text","Add Text"
+"Add Curved Text","Add Curved Text"
+"Add Upload Zone","Add Upload Zone"
+"Change the layer order by dragging elements up or down.","Change the layer order by dragging elements up or down."
+"Save Layers","Save Layers"
+"Product Stage","Product Stage"
+px,px
+"Layer Options","Layer Options"
+Modifications,Modifications
+Text,Text
+"Media Types","Media Types"
+"Position - x","Position - x"
+"Position - y","Position - y"
+"One color value: Colorpicker, Multiple color values: Fixed color palette","One color value: Colorpicker, Multiple color values: Fixed color palette"
+"Current Color","Current Color"
+"Enter one hexadecimal color to change the initial color of this element.","Enter one hexadecimal color to change the initial color of this element."
+"A value between 0-1","A value between 0-1"
+Removable,Removable
+"Unlock Layer Position","Unlock Layer Position"
+"Define Bounding Box - X","Define Bounding Box - X"
+"Define Bounding Box - y","Define Bounding Box - y"
+"Define Bounding Box - width","Define Bounding Box - width"
+"Define Bounding Box - height","Define Bounding Box - height"
+"Define Bounding Box","Define Bounding Box"
+"Title of an image element in the same view.","Title of an image element in the same view."
+"Clip element into bounding box","Clip element into bounding box"
+Font,Font
+"Select a font","Select a font"
+"Multiline Alignment","Multiline Alignment"
+Editable,Editable
+"Allow customer to switch between curvable and normal text.","Allow customer to switch between curvable and normal text."
+"Curved Text Spacing","Curved Text Spacing"
+"Curved Text Radius","Curved Text Radius"
+"Curved Text Reverse","Curved Text Reverse"
+"Image Uploads","Image Uploads"
+"Custom Texts","Custom Texts"
+Designs,Designs
+"Facebook Photos","Facebook Photos"
+"Instagram Photos","Instagram Photos"
+"Element Title","Element Title"
+Position,Position
+Dimensions,Dimensions
+"Reset Button","Reset Button"
+"Reset To His Origin","Reset To His Origin"
+"Could not load order item image. Please try again!","Could not load order item image. Please try again!"
+"Please enter a title","Please enter a title"
+"Something went wrong. Please try again!","Something went wrong. Please try again!"
+"Add imported image source to media library?","Add imported image source to media library?"
+"Are you sure you want to delete it?","Are you sure you want to delete it?"
+"Enter a title for the element","Enter a title for the element"
+"Choose an element image","Choose an element image"
+Set,Set
+"Enter your text.","Enter your text."
+"Remove element?","Remove element?"
+"You have not saved your changes!","You have not saved your changes!"
+"Image creation failed. Please try again!","Image creation failed. Please try again!"
+"JSON could not be parsed.","JSON could not be parsed."
+"Loading data...","Loading data..."
+"No element selected!","No element selected!"
+"No Fancy Product is selected. Please open one from the Order Items!","No Fancy Product is selected. Please open one from the Order Items!"
+"No height has been entered. Please set one!","No height has been entered. Please set one!"
+"You cannot create an SVG file from a bitmap, you can only do this by using a text element or another SVG image file","You cannot create an SVG file from a bitmap, you can only do this by using a text element or another SVG image file"
+"No width has been entered. Please set one!","No width has been entered. Please set one!"
+"PDF creation failed - There is too much data being sent. To fix this please increase the Server memory limit in your php.ini file. You could export a single view or use the JPEG image format!","PDF creation failed - There is too much data being sent. To fix this please increase the Server memory limit in your php.ini file. You could export a single view or use the JPEG image format!"
+"Your Pop-Up Blocker is enabled so the image will be opened in a new window. Please choose to allow this website in your pop-up blocker!","Your Pop-Up Blocker is enabled so the image will be opened in a new window. Please choose to allow this website in your pop-up blocker!"
+"Fancy Product Designer - Order Viewer","Fancy Product Designer - Order Viewer"
+Export,Export
+"Output File","Output File"
+PDF,PDF
+IMAGE,IMAGE
+"Image Format","Image Format"
+PNG,PNG
+JPEG,JPEG
+SVG,SVG
+Size,Size
+"DPI - Pixel Converter","DPI - Pixel Converter"
+"PDF width in mm","PDF width in mm"
+"PDF height in mm","PDF height in mm"
+"Scale Factor","Scale Factor"
+"Image DPI","Image DPI"
+View(s),View(s)
+ALL,ALL
+"CURRENT SHOWING","CURRENT SHOWING"
+Create,Create
+"The created pdfs will be stored in:","The created pdfs will be stored in:"
+"Additional Tools - Change Stage Dimensions","Additional Tools - Change Stage Dimensions"
+"Width in pixels","Width in pixels"
+"Height in pixels","Height in pixels"
+"Create a new Fancy Product with the current showing views in the Order Viewer.","Create a new Fancy Product with the current showing views in the Order Viewer."
+"Single Elements","Single Elements"
+"Added By Customer","Added By Customer"
+"Saved Images On Server","Saved Images On Server"
+"Export Options","Export Options"
+"Padding around exported element","Padding around exported element"
+DPI,DPI
+"Use origin size, that will set the scaling to 1","Use origin size, that will set the scaling to 1"
+"when exporting the image.","when exporting the image."
+"Save exported image on server.","Save exported image on server."
+"Export without bounding box clipping","Export without bounding box clipping"
+"if element has one.","if element has one."
+"You can save all elements of the Fancy Product as an image on your server, to be stored in:","You can save all elements of the Fancy Product as an image on your server, to be stored in:"
+"Picture ","Picture "
+"Load in Order Viewer","Load in Order Viewer"
+"Additional Cost","Additional Cost"
+Item,Item
+"Edit Customization","Edit Customization"
+"See price before order confirmation.","See price before order confirmation."
+"What's this?","What's this?"
+Qty,Qty
+Subtotal,Subtotal
+SKU,SKU
+"Gift Message","Gift Message"
+From:,From:
+To:,To:
+Message:,Message:
+Ordered,Ordered
+Shipped,Shipped
+Canceled,Canceled
+Refunded,Refunded
+Customize,Customize
+"Add to Cart","Add to Cart"
+Cancel,Cancel
+"click to open fullscreen","click to open fullscreen"
+"View Fullscreen","View Fullscreen"
+"click to exit fullscreen","click to exit fullscreen"
+"Check out my design!","Check out my design!"
+Uploading,Uploading
+"Server error: Image could not be uploaded, please try again!","Server error: Image could not be uploaded, please try again!"
+"The product is not created yet, try again when the product has been fully loaded into the designer","The product is not created yet, try again when the product has been fully loaded into the designer"
+"New Description","New Description"
+"abcd ews","abcd ews"
+"js test","js test abccc"

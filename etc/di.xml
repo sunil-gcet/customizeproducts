@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Chilliapple\Customizeproducts\Api\CustomizeDataRepositoryInterface"
+                type="Chilliapple\Customizeproducts\Model\CustomizeDataRepository"/>
+
+    <preference for="Chilliapple\Customizeproducts\Api\Data\CustomizeDataInterface"
+                type="Chilliapple\Customizeproducts\Model\CustomizeData"/>
+				
+	<preference for="Magento\Catalog\Block\Product\ListProduct" 
+				type="Chilliapple\Customizeproducts\Block\Product\ListProduct" />
+				
+	<preference for="Magento\Checkout\Block\Cart\Item\Renderer" 
+				type="Chilliapple\Customizeproducts\Block\Cart\Item\Renderer" />
+				
+	<preference for="Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer" 
+				type="Chilliapple\Customizeproducts\Block\Order\Item\Renderer\DefaultRenderer" />
+				
+	<preference for="Magento\Sales\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer" 
+				type="Chilliapple\Customizeproducts\Block\Adminhtml\Order\View\Items\Renderer\DefaultRenderer" />
+	
+	<preference for="Magento\Sales\Block\Order\Email\Items\Order\DefaultOrder" 
+				type="Chilliapple\Customizeproducts\Block\Order\Email\Items\Order\DefaultOrder" />
+	<!-- <preference for="Magento\Catalog\Block\Product\View" 
+				type="Chilliapple\Customizeproducts\Block\Product\ViewProduct" /> -->
+	<!-- <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="save_custom_fee_in_quote" type="Chilliapple\Customizeproducts\Plugin\Checkout\Model\ShippingInformationManagement" sortOrder="1"/>
+    </type> -->
+	<type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Chilliapple\Customizeproducts\Api\Data\PostInterface" xsi:type="string">Chilliapple\Customizeproducts\Api\Data\PostRepositoryInterface
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

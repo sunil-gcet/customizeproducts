@@ -1,0 +1,14 @@
+<?php
+namespace Chilliapple\Customizeproducts\Helper;
+
+//$object_manager = Magento\Core\Model\ObjectManager::getInstance();
+//$dir = $object_manager->get('Magento\App\Dir');            
+//$base = $dir->getDir();
+$lib_file = '/var/www/jewel/app/code/Chilliapple/Customizeproducts/lib/tcpdf/tcpdf.php';
+require_once($lib_file);
+
+class Tcpdfinit extends TCPDF {
+	public function __construct() {
+		parent::__construct();
+	}
+}

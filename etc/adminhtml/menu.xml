@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Chilliapple. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+		<add id="Chilliapple_Customizeproducts::chilliapple_customizeprod" title="Customize Product Designer" module="Chilliapple_Customizeproducts" sortOrder="50"  dependsOnModule="Chilliapple_Customizeproducts" resource="Chilliapple_Customizeproducts::chilliapple_customizeprod" />
+		<add id="Chilliapple_Customizeproducts::chilliapple_productcategory_index" title="Product Categories" module="Chilliapple_Customizeproducts" sortOrder="0" parent="Chilliapple_Customizeproducts::chilliapple_customizeprod" action="customizeproducts/productcategory/index" resource="Chilliapple_Customizeproducts::chilliapple_productcategory_index"/>
+        <add id="Chilliapple_Customizeproducts::chilliapple_customizeprod_index" title="Customize Product" module="Chilliapple_Customizeproducts" sortOrder="10" parent="Chilliapple_Customizeproducts::chilliapple_customizeprod" action="customizeproducts/customizeprod/index" resource="Chilliapple_Customizeproducts::chilliapple_customizeprod_index"/>
+		<add id="Chilliapple_Customizeproducts::chilliapple_customizeprodview_index" title="Customized Product Views" module="Chilliapple_Customizeproducts"  sortOrder="20" parent="Chilliapple_Customizeproducts::chilliapple_customizeprod" action="customizeproducts/customizeprodview/index" resource="Chilliapple_Customizeproducts::chilliapple_customizeprodview_index"/>
+		<add id="Chilliapple_Customizeproducts::chilliapple_customizelayersindex" title="Customize Layers" module="Chilliapple_Customizeproducts" sortOrder="30" parent="Chilliapple_Customizeproducts::chilliapple_customizeprod" action="customizeproducts/customizelayers/index" resource="Chilliapple_Customizeproducts::chilliapple_customizelayersindex"/>
+		<add id="Chilliapple_Customizeproducts::chilliapple_customizedesign_index" title="Customize Designs" module="Chilliapple_Customizeproducts"  sortOrder="40" parent="Chilliapple_Customizeproducts::chilliapple_customizeprod" action="customizeproducts/customizedesign/index" resource="Chilliapple_Customizeproducts::chilliapple_customizedesign_index"/>
+		<add id="Chilliapple_Customizeproducts::chilliapple_customsettings_index" title="Settings" module="Chilliapple_Customizeproducts" sortOrder="50" parent="Chilliapple_Customizeproducts::chilliapple_customizeprod" action="customizeproducts/customsettings/edit/id/1/" resource="Chilliapple_Customizeproducts::chilliapple_customsettings_index"/>
+<!--AddMenu-->
+    </menu>
+</config>

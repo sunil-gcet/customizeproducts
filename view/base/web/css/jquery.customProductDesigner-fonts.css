@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "Carme";
+  src: local("#"), url("../fonts/Carme.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Copperplate Bold";
+  src: local("#"), url("../fonts/Copperplate_Bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Custom Script";
+  src: local("#"), url("../fonts/Custom_Script.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "fpd-jquery";
+  src: local("#"), url("../fonts/fpd-jquery.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "fpd-wp";
+  src: local("#"), url("../fonts/fpd-wp.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: "Tequilla Sunrise";
+  src: local("#"), url("../fonts/Tequilla_Sunrise.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+

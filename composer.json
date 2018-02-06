@@ -2,9 +2,7 @@
   "name": "designsoftwareninja/customizeproducts",
   "description": "Customize products",
   "require": {
-	"magento/magento-composer-installer": "*",
-    "composer/installers": "~1.0",
-	"php": "~5.5.0|~5.6.0|~7.0.0|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.2.0",
+	"php": "~5.5.0|~5.6.0|~7.0.0|7.0.2|7.0.4|~7.0.6|~7.1.0",
     "tecnickcom/tcpdf": "6.2.13",
     "phenx/php-svg-lib": "0.3.*"
   },
@@ -15,18 +13,12 @@
     "OSL-3.0",
     "AFL-3.0"
   ],
-  "extra": {
-		"magento-force": "override",
-        "installer-paths": {
-            "app/code/Chilliapple/Customizeproducts": ["Chilliapple/Customizeproducts"]
-        }
-  },
   "autoload": {
     "files": [
       "registration.php"
     ],
     "psr-4": {
-      "designsoftwareninja\\Customizeproducts\\": ""
+      "Chilliapple\\Customizeproducts\\": ""
     }
   }
 }

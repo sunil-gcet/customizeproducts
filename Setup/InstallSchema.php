@@ -1344,7 +1344,7 @@ class InstallSchema implements InstallSchemaInterface
                 ]
             );
 			
-		$installer->getConnection()->modifyColumn(
+		/*$installer->getConnection()->modifyColumn(
 			$installer->getTable('quote_item_option'),
 			'value',
 			'widget_code',
@@ -1360,7 +1360,7 @@ class InstallSchema implements InstallSchemaInterface
 			[
 				'type' => 'longtext'
 			]
-		);
+		);*/
 
         $installer->endSetup();
 

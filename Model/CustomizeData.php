@@ -3,7 +3,7 @@
 namespace Chilliapple\Customizeproducts\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Chilliapple\Customizeproducts\Api\Data\CustomizeDataInterface;
+use Chilliapple\Customizeproducts\Api\Data\CustomizeDataInterface as CustomizeDataInterface;
 
 /**
  * Class CustomizeData

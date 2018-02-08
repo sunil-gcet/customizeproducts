@@ -3,7 +3,7 @@
 namespace Chilliapple\Customizeproducts\Model;
 
 use Magento\Framework\Exception\NoSuchEntityException;
-use Chilliapple\Customizeproducts\Api\CustomizeDataRepositoryInterface;
+use Chilliapple\Customizeproducts\Api\CustomizeDataRepositoryInterface as CustomizeDataRepositoryInterface;
 use Chilliapple\Customizeproducts\Model\Cdresource\CustomizeData\CollectionFactory;
 use Chilliapple\Customizeproducts\Model\CustomizeDataFactory;
 use Chilliapple\Customizeproducts\Model\Cdresource\CustomizeData as CustomizeDataResource;

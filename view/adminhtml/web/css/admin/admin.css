@@ -1246,3 +1246,4 @@ fpd-wc-order #fpd-order-panel {
 .sales-order-view #fpd-export-tools .col-lg-4 {width: 33.33333%;float: left; padding-left: 5px; padding-right: 5px;}
 .sales-order-view #fpd-export-tools .control-label {text-align: right;margin-bottom: 0;padding-top: 0px;font-size: 12px;}
 .sales-order-view #fpd-export-tools .radio label, .sales-order-view #fpd-export-tools .checkbox label {padding-left: 0px; margin-bottom: 0;font-weight: normal;cursor: pointer;font-size: 12px;display: inline-block;vertical-align: middle;}
+.customizeproducts-customizelayers-index .page-main-actions {	display:none !important;}

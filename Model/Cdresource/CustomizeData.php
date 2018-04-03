@@ -33,11 +33,9 @@ class CustomizeData extends AbstractDb
      */
     public function __construct(
         Context $context,
-        $connectionName = null,
-		CollectionFactory $collectionFactory
+	CollectionFactory $collectionFactory
     ) {
-        parent::__construct($context, $connectionName);
-
+	parent::__construct($context);
         $this->collectionFactory = $collectionFactory;
     }
 

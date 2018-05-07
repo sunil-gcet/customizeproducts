@@ -18,21 +18,15 @@ $stage_width = $this->getCanvaswidth();
 $stage_height = $this->getCanvasheight();
 ?>
 <script type="text/javascript">
-    /*require(['jquery','customizeproducts'],function($){
-        $(window).load(function() {
-            alert("gdfg");
-        });
-    });*/
-	var ADMIN_LAYER_AJAX = '<?php echo $block->getUrl('customizeproducts/customizelayers/ajax') ?>';
-	var ADMIN_LAYER_UPLOADIMAGE = '<?php echo $block->getUrl('customizeproducts/customizelayers/uploadimage') ?>';
-	function getNeededUrl(whichone) {
-		alert(whichone);
-		if(whichone == 1) {
-			return ADMIN_LAYER_AJAX;
-		} else {
-			return ADMIN_LAYER_UPLOADIMAGE;
-		}
+var ADMIN_LAYER_AJAX = '<?php echo $block->getUrl('customizeproducts/customizelayers/ajax') ?>';
+var ADMIN_LAYER_UPLOADIMAGE = '<?php echo $block->getUrl('customizeproducts/customizelayers/uploadimage') ?>';
+function getNeededUrl(whichone) {
+	if(whichone == 1) {
+		return ADMIN_LAYER_AJAX;
+	} else {
+		return ADMIN_LAYER_UPLOADIMAGE;
 	}
+}
 </script>
 <div id="main">
 	<div id="content">

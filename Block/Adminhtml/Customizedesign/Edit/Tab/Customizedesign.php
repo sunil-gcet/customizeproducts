@@ -45,18 +45,32 @@ class Customizedesign extends \Magento\Backend\Block\Widget\Form\Generic impleme
         if ($model->getId()) {
             $fieldset->addField('id', 'hidden', array('name' => 'id'));
         }
-
-		$fieldset->addField(
-            'design_image',
-            'image',
-            array(
-                'name' => 'design_image',
-                'label' => __('Design Image'),
-                'title' => __('Design Image'),
-				'base_url' => 'customizeproducts/designs',
-				'required' => true,
-            )
-        );
+		
+		$fieldset->addField( 
+			'design_image', 
+			'image',
+			array( 
+				'name' => 'design_image', 
+				'label' => __('Design Image'), 
+				'title' => __('Design Image'),             
+				'required' => true, 
+			)
+		)->setAfterElementHtml('
+			<script>
+				require([
+					 "jquery",
+				], function($){
+					$(document).ready(function () {
+						if($("#page_design_image").attr("value")){
+							$("#page_design_image").removeClass("required-file");
+						}else{
+							$("#page_design_image").addClass("required-file");
+						}
+						$( "#page_design_image" ).attr( "accept", "image/x-png,image/gif,image/jpeg,image/jpg,image/png" );
+					});
+				  });
+		   </script>
+		');
 		
 		$fieldset->addField(
             'enabled', 'select', array(

@@ -7,12 +7,14 @@ $enabledFonts = $this->_helperData->getEnabledGoogleFonts();
 $fontsString = '';
 if (!empty($enabledFonts)) {
 	foreach($enabledFonts as $fontName) {
-		$fontsString[] = '"'.$fontName.'"';
+		if($fontName != '') {
+			$fontsString[] = $fontName;
+		}
 	}
 }
 ?>
 var cound_not = '<?php echo __('Could not load order item image. Please try again!'); ?>';
-var enabled_fonts = '<?php //echo @implode(",", $fontsString); ?>';
+var enabled_fonts = '<?php echo @implode(",", $fontsString); ?>';
 var fpd_admin_opts = {"adminAjaxUrl":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","upload_image":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","checkToken":FORM_KEY,"enterTitlePrompt":"<?php echo __('Please enter a title'); ?>","tryAgain":"<?php echo __('Something went wrong. Please try again!');?>","addToLibrary":"<?php echo __('Add imported image source to media library?');?>","remove":"<?php echo __('Are you sure you want to delete it?');?>"};
 var fpd_product_builder_opts = {"adminUrl":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","upload_image":"<?php echo $this->getUrl('customizeproducts/designer/ajax/');?>","originX":"center","originY":"center","paddingControl":10,"defaultFont":"Arial","enterTitlePrompt":"<?php echo __('Enter a title for the element');?>","chooseElementImageTitle":"<?php echo __('Choose an element image');?>","set":"<?php echo __('Set');?>","enterYourText":"<?php echo __('Enter your text.');?>","removeElement":"<?php echo __('Remove element?');?>","notChanged":"<?php echo __('You have not saved your changes!');?>","changeImageSource":"<?php echo __('Change Image Source');?>"};
 var host_mode = false;

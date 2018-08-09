@@ -19,7 +19,7 @@ class Customizeprodview extends \Magento\Backend\Block\Widget\Form\Generic imple
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Store\Model\System\Store $systemStore,
-		\Chilliapple\Customizeproducts\Model\Config\Source\Productoptions $productArray,
+	\Chilliapple\Customizeproducts\Model\Config\Source\Productoptions $productArray,
         array $data = array()
     ) {
         $this->_systemStore = $systemStore;
@@ -70,18 +70,31 @@ class Customizeprodview extends \Magento\Backend\Block\Widget\Form\Generic imple
 				'required' => true,
 			)
 		);
-		
-		$fieldset->addField(
-            'view_image',
-            'image',
-            array(
-                'name' => 'view_image',
-                'label' => __('Custom View Image'),
-                'title' => __('Custom View Image'),
-				'base_url' => 'customizeproducts/views',
-				'required' => true,
-            )
-        );
+		$fieldset->addField( 
+			'view_image', 
+			'image',
+			array( 
+				'name' => 'view_image', 
+				'label' => __('Custom View Image'), 
+				'title' => __('Custom View Image'),             
+				'required' => true, 
+			)
+		)->setAfterElementHtml('
+			<script>
+				require([
+					 "jquery",
+				], function($){
+					$(document).ready(function () {
+						if($("#page_view_image").attr("value")){
+							$("#page_view_image").removeClass("required-file");
+						}else{
+							$("#page_view_image").addClass("required-file");
+						}
+						$( "#page_view_image" ).attr( "accept", "image/x-png,image/gif,image/jpeg,image/jpg,image/png" );
+					});
+				  });
+		   </script>
+		');
 		
 		$fieldset->addField(
             'image_price',

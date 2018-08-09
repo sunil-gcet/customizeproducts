@@ -21,14 +21,15 @@ class Customizepage extends \Magento\Sales\Block\Adminhtml\Order\View
 		$google_webfonts = $this->_helperData->getEnabledGoogleFonts();
 		$max_fonts_per_href = 10;
 		$href_wf = array();
+		$href_wf_text = '';
 		if (!empty($google_webfonts)) {
 			for ($i=0; $i < sizeof($google_webfonts); $i++) {
 				array_push($href_wf, $google_webfonts[$i]);
 				if (($i % $max_fonts_per_href) == $max_fonts_per_href-1 || $i == sizeof($google_webfonts)-1) {
-					$href_wf = implode("|", $href_wf);
+					$href_wf_text = implode("|", $href_wf);
 				}
 			}
 		}
-		return $href_wf;
+		return $href_wf_text;
 	}
 }

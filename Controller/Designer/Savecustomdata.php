@@ -105,17 +105,19 @@ class Savecustomdata extends \Magento\Framework\App\Action\Action
 		if (empty($errors)) {
 			
 			$filetoUpload = $this->getRequest()->getFiles('thumbimage');
-			if (!empty($filetoUpload['name'])) {
+			$file = $filetoUpload[0];
+			
+			if (!empty($file)) {
 				
-				$file = $filetoUpload;
-				$filename = $file['name'][0];
+				
+				$filename = $file['name'];
 				$ext = pathinfo($filename, PATHINFO_EXTENSION);
-				if (!getimagesize($file['tmp_name'][0]) && $ext !== 'svg') {
+				if (!getimagesize($file['tmp_name']) && $ext !== 'svg') {
 					$errors[] = __('This file is not an image!');
 				}
 
-				if ($file['error'][0] !== UPLOAD_ERR_OK) {
-					$errors[] = $this->_ajaxHelper->fileUploadErrorMessage($file['error'][0]);
+				if ($file['error'] !== UPLOAD_ERR_OK) {
+					$errors[] = $this->_ajaxHelper->fileUploadErrorMessage($file['error']);
 				}
 				if (empty($errors)) {
 					
@@ -135,7 +137,7 @@ class Savecustomdata extends \Magento\Framework\App\Action\Action
 					
 					$filepathsmall = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath()."customizeproducts/productimages/".$file_name_small;
 										
-					if(move_uploaded_file($file['tmp_name'][0], $tmpfilepath)) {
+					if(move_uploaded_file($file['tmp_name'], $tmpfilepath)) {
 
 						list($product_picture_width, $product_picture_height) = getimagesize($tmpfileurl);
 					

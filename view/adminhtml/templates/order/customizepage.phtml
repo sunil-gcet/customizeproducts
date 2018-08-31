@@ -1,241 +1,487 @@
+<?php
+$isRequired = $block->ifCustomizeProductExists();
+if($isRequired) {
+?>
+
 <div id="start_products"></div>
+
 <div class="changedivpoistion" style="display:none;">    
+
     <div id="fpd-order" class="col-lg-12">
+
         <div class="panel col-lg-12">
+
             <div class="panel-heading">
+
                 <?php echo __('Fancy Product Designer - Order Viewer'); ?>
+
             </div>
+
             <div id="fpd-order-panel">
+
                 <div id="fpd-order-designer-wrapper">
+
                     <!-- Product Designer Container -->
+
                     <div id="fpd-order-designer-wrapper">
+
                         <div id="fpd-order-designer" class="fpd-shadow-1"></div>
+
                     </div>
+
                     <div id="fpd-export-tools" class="form-horizontal fpd-clearfix">
+
                         <div class="col-lg-6">
+
                             <div class="row">
+
                                 <!-- Export -->
+
                                 <div class="panel col-lg-12">
+
                                     <div class="panel-heading">
+
                                         <?php echo __('Export'); ?>
+
                                     </div>
+
                                     <div class="well hidden-print">
+
                                         <div class="form-wrapper">
+
                                             <div class="form-group row">
+
                                                 <div class="control-label col-lg-3"><?php echo __('Output File'); ?></div>
+
                                                 <div class="col-lg-4">
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_output_file" value="pdf" checked="checked" />
+
                                                             <?php echo __('PDF'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_output_file" value="image" />
+
                                                             <?php echo __('IMAGE'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="form-group row">
+
                                                 <div class="control-label col-lg-3"><?php echo __('Image Format'); ?></div>
+
                                                 <div class="col-lg-4">
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_image_format" value="png" checked="checked" />
+
                                                             <?php echo __('PNG'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_image_format" value="jpeg" />
+
                                                             <?php echo __('JPEG'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_image_format" value="svg" />
+
                                                             <?php echo __('SVG'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="form-group row">                                
+
                                                 <div class="control-label col-lg-3"><?php echo __('Size'); ?></div>
+
                                                 <div class="col-lg-9">
+
                                                     <div class="help-block"><a href="http://www.hdri.at/dpirechner/dpirechner_en.htm" target="_blank" style="font-size: 11px;"><?php echo __('DPI - Pixel Converter'); ?></a></div>
+
                                                 </div>
+
                                                 <div class="col-lg-4 col-lg-offset-3">
+
                                                     <input class="input form-control" type="number" value="210" id="fpd-pdf-width" />
+
                                                 </div>
+
                                                 <div class="col-lg-9 col-lg-offset-3">
+
                                                     <div class="help-block"><?php echo __('PDF width in mm'); ?></div>
+
                                                 </div>                                        
+
                                                 <div class="col-lg-4 col-lg-offset-3">
+
                                                     <input class="input form-control" type="number" value="297" id="fpd-pdf-height" />
+
                                                 </div>
+
                                                 <div class="col-lg-9 col-lg-offset-3">
+
                                                     <div class="help-block"><?php echo __('PDF height in mm'); ?></div>
+
                                                 </div>                                        
+
                                                 <div class="col-lg-4 col-lg-offset-3">
+
                                                     <input class="input form-control" type="number" value="" name="fpd_scale" placeholder="1" />
+
                                                 </div>
+
                                                 <div class="col-lg-9 col-lg-offset-3">
+
                                                     <div class="help-block"><?php echo __('Scale Factor'); ?></div>
+
                                                 </div>                                        
+
                                                 <div class="col-lg-4 col-lg-offset-3">
+
                                                     <input class="input form-control" type="number" value="" id="fpd-pdf-dpi" placeholder="300" />
+
                                                 </div>
+
                                                 <div class="col-lg-9 col-lg-offset-3">
+
                                                     <div class="help-block"><?php echo __('Image DPI'); ?></div>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="form-group row">
+
                                                 <div class="control-label col-lg-3"><?php echo __('View(s)'); ?></div>
+
                                                 <div class="col-lg-9">
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_export_views" value="all" checked="checked" />
+
                                                             <?php echo __('ALL'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                     <div class="radio">
+
                                                         <label>
+
                                                             <input type="radio" name="fpd_export_views" value="current" />
+
                                                             <?php echo __('CURRENT SHOWING'); ?>
+
                                                         </label>
+
                                                     </div>
+
                                                 </div>
+
                                             </div>
+
                                         </div>
+
                                         <button id="fpd-generate-file" class="btn btn-primary"><?php echo __('Create'); ?></button>
+
                                         <p class="help-block"><?php echo __('The created pdfs will be stored in:'); ?><br /><?php echo $this->_ajaxhelperData->getallfoldersPath('orderpdfurl'); ?></p>
+
                                     </div>
+
                                     <div class="fpd-ui-blocker"></div>
+
                                 </div>
+
                                 <!-- Additional Tools -->
+
                                 <div class="panel col-lg-12">
+
                                     <div class="panel-heading">
+
                                         <?php echo __('Additional Tools - Change Stage Dimensions'); ?>
+
                                     </div>
+
                                     <div class="well hidden-print">
+
                                         <div class="form-wrapper">
+
                                             <div class="form-group row">
+
                                                 <div class="control-label col-lg-3"><?php echo __('Width in pixels'); ?></div>
+
                                                 <div class="col-lg-4">
+
                                                     <input class="input form-control" type="number" id="fpd-stage-width" placeholder="<?php echo $this->_helperData->getmainSettings('stage_width'); ?>"/>
+
                                                 </div>
+
                                             </div>
+
                                             <div class="form-group row">
+
                                                 <div class="control-label col-lg-3"><?php echo __('Height in pixels'); ?></div>
+
                                                 <div class="col-lg-4">
+
                                                     <input class="input form-control" type="number" id="fpd-stage-height" placeholder="<?php echo $this->_helperData->getmainSettings('stage_height'); ?>" />
+
                                                 </div>
+
                                             </div>
+
                                         </div>
+
                                         <p class="help-block"><?php echo __('Create a new Fancy Product with the current showing views in the Order Viewer.'); ?></p>
+
                                         <a href="#" class="btn btn-primary" id="fpd-create-new-fp"><?php echo __('Create'); ?></a>
+
                                     </div>
+
                                     <div class="fpd-ui-blocker"></div>
+
                                 </div>
+
                             </div>
+
                         </div><!-- Left Column -->
+
                         <div class="col-lg-6">
+
                             <div class="panel">
+
                                 <div class="panel-heading">
+
                                     <?php echo __('Single Elements'); ?>
+
                                 </div>
+
                                 <div id="fpd-editor-box-wrapper"></div>
+
                                 <div id="fpd-elements-lists" class="fpd-clearfix">
+
                                     <div>
+
                                         <h4><?php echo __('Added By Customer'); ?></h4>
+
                                         <ul id="fpd-custom-elements-list"></ul>
+
                                     </div>
+
                                     <div>
+
                                         <h4><?php echo __('Saved Images On Server'); ?></h4>
+
                                         <ul id="fpd-order-image-list"></ul>
+
                                     </div>
+
                                 </div>
+
                                 <div class="well hidden-print">
+
                                     <h4><?php echo __('Export Options'); ?></h4>
+
                                     <div class="form-wrapper">
+
                                         <div class="form-group row">
+
                                             <div class="control-label col-lg-3"><?php echo __('Image Format'); ?></div>
+
                                             <div class="col-lg-4">
+
                                                 <div class="radio">
+
                                                     <label>
+
                                                         <input type="radio" name="fpd_single_image_format" value="png" checked="checked" />
+
                                                         <?php echo __('PNG'); ?>
+
                                                     </label>
+
                                                 </div>
+
                                                 <div class="radio">
+
                                                     <label>
+
                                                         <input type="radio" name="fpd_single_image_format" value="jpeg" />
+
                                                         <?php echo __('JPEG'); ?>
+
                                                     </label>
+
                                                 </div>
+
                                                 <div class="radio">
+
                                                     <label>
+
                                                         <input type="radio" name="fpd_single_image_format" value="svg" />
+
                                                         <?php echo __('SVG'); ?>
+
                                                     </label>
+
                                                 </div>
+
                                             </div>
+
                                         </div>
+
                                         <div class="form-group row">                                
+
                                             <div class="control-label col-lg-3"><?php echo __('Padding around exported element'); ?></div>
+
                                             <div class="col-lg-4">
+
                                                 <input class="input form-control" type="number" min="0" value="" name="fpd_single_element_padding" placeholder="0">
+
                                             </div>
+
                                         </div>
+
                                         <div class="form-group row fpd-single-element-dpi hidden">                                
+
                                             <div class="control-label col-lg-3"><?php echo __('DPI'); ?></div>
+
                                             <div class="col-lg-4">
+
                                                 <input class="input form-control" type="number" min="0" value="" name="fpd_single_element_dpi" placeholder="72">
+
                                             </div>
+
                                         </div>
+
                                         <div class="form-group row">
+
                                             <div class="checkbox">
+
                                                 <div class="col-lg-3">&nbsp;</div>
+
                                                 <label>
+
                                                     <input type="checkbox" id="fpd-restore-oring-size">
+
                                                     <?php echo __('Use origin size, that will set the scaling to 1'); ?>,
+
                                                     <br>
+
                                                     <?php echo __('when exporting the image.'); ?>
+
                                                 </label>
+
                                             </div>
+
                                         </div>
+
                                         <div class="form-group row">
+
                                             <div class="checkbox">
+
                                                 <div class="col-lg-3">&nbsp;</div>
+
                                                 <label>
+
                                                     <input type="checkbox" id="fpd-save-on-server">
+
                                                     <?php echo __('Save exported image on server.'); ?>
+
                                                 </label>
+
                                             </div>
+
                                         </div>
+
                                         <div class="form-group row">
+
                                             <div class="checkbox">
+
                                                 <div class="col-lg-3">&nbsp;</div>
+
                                                 <label>
+
                                                     <input type="checkbox" id="fpd-without-bounding-box">
+
                                                     <?php echo __('Export without bounding box clipping'); ?>
+
                                                     <br>
+
                                                     <?php echo __('if element has one.'); ?>
+
                                                 </label>
+
                                             </div>
+
                                         </div>
+
                                     </div>
+
                                     <button id="fpd-save-element-as-image" class="btn btn-primary"><?php echo __('Create'); ?></button>
+
                                     <p class="help-block"><?php echo __('You can save all elements of the Fancy Product as an image on your server, to be stored in:'); ?><br /><?php echo $this->_ajaxhelperData->getallfoldersPath('orderimageurl'); ?></p>
+
                                 </div>
+
                                 <div class="fpd-ui-blocker"></div>
+
                             </div>
+
                         </div><!-- Right Column -->
+
                     </div><!-- Tools -->
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
+<?php } ?>

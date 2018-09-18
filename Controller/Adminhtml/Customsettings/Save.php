@@ -6,9 +6,7 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-	public function execute()
-    {
-		
+	public function execute() {		
         $data = $this->getRequest()->getParams();
         if ($data) {
             $model = $this->_objectManager->create('Chilliapple\Customizeproducts\Model\Customsettings');
@@ -16,6 +14,12 @@ class Save extends \Magento\Backend\App\Action
             if ($id) {
                 $model->load($id);
             }
+			if(!isset($data['stage_width']) || $data['stage_width'] <= 0) {
+				$data['stage_width'] = '800';
+			}
+			if(!isset($data['stage_height']) || $data['stage_height'] <= 0) {
+				$data['stage_height'] = '600';
+			}
 			if(isset($data['designs_parameter_filters']) && count($data['designs_parameter_filters'])) {
 				$data['designs_parameter_filters'] = '"'.implode('", "', $data['designs_parameter_filters']).'"';
 			}
